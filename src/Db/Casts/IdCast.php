@@ -6,7 +6,7 @@ use Illuminate\Contracts\Database\Eloquent\CastsAttributes;
 
 abstract class IdCast implements CastsAttributes
 {
-    /** Id object full class name */
+    /** ID object full class name */
     protected string $class;
 
     public function get($model, string $key, $value, array $attributes)

@@ -1,12 +1,15 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace Database\Factories\Verlanglijstjes;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Verlanglijstjes\Wish;
 use function now;
 
 class WishFactory extends Factory
 {
+    protected $model = Wish::class;
+
     /**
      * Define the model's default state.
      */
@@ -31,7 +34,7 @@ class WishFactory extends Factory
     {
         return $this->state(function (array $attributes) {
             return [
-                'claimed_by' => 1,
+                'claimed_by' => 2,
                 'claimed_at' => now(),
             ];
         });

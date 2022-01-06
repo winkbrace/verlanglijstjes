@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace Verlanglijstjes;
 
@@ -15,7 +15,7 @@ use Verlanglijstjes\Db\Casts\UserIdCast;
  * @property UserId id
  * @property string name
  * @property string email
- * @property int tier
+ * @property int generation
  * @property int position
  * @property string avatar
  * @property string chocolate_preference
@@ -24,26 +24,16 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var string[]
-     */
     protected $fillable = [
         'name',
         'email',
         'password',
-        'tier',
+        'generation',
         'position',
         'avatar',
         'chocolate_preference',
     ];
 
-    /**
-     * The attributes that should be hidden for serialization.
-     *
-     * @var array
-     */
     protected $hidden = [
         'password',
         'remember_token',

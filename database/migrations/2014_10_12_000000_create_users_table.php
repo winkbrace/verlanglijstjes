@@ -18,7 +18,7 @@ class CreateUsersTable extends Migration
             $table->string('name')->unique();
             $table->string('email');
             $table->string('password');
-            $table->integer('tier');
+            $table->integer('generation');
             $table->integer('position');
             $table->string('avatar')->nullable();
             $table->string('chocolate_preference');
