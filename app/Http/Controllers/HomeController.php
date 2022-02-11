@@ -1,13 +1,23 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use Verlanglijstjes\User;
+use Verlanglijstjes\Wish;
 
-class HomeController extends Controller
+final class HomeController extends Controller
 {
-    public function index()
+    public function show()
     {
-        return view('home');
+        $wish = Wish::find(1);
+        $user = $wish->user;
+
+        dd(Wish::with('claimedBy')->get());
+
+        return view('home', [
+            'table' => $table->all(),
+        ]);
     }
 }
