@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\WishController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,10 +15,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::name('home')->get('/', [HomeController::class, 'index']);
+Route::name('home')->get('/', [HomeController::class, 'show']);
 
 Route::middleware('auth')->group(function() {
-    Route::name('add-wish')->get('/wish/add', [WishController::class, 'add']);
+    Route::name('add-wish')->get('/wish/add', [WishController::class, 'create']);
+    Route::name('add-wish')->post('/wish/add', [WishController::class, 'store']);
 });
 
 require __DIR__.'/auth.php';

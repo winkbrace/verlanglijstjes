@@ -19,39 +19,15 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Tabelstructuur voor tabel `password_resets`
---
-
-CREATE TABLE IF NOT EXISTS `password_resets` (
-  `email` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `token` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
--- --------------------------------------------------------
-
---
--- Tabelstructuur voor tabel `users`
---
-
-CREATE TABLE IF NOT EXISTS `users` (
-  `id` int(10) unsigned NOT NULL,
-  `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `email` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `password` varchar(60) COLLATE utf8_unicode_ci NOT NULL,
-  `rank` int(11) NOT NULL,
-  `chocolate_preference` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
-  `sorting` int(11) NOT NULL,
-  `remember_token` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
 -- Gegevens worden geëxporteerd voor tabel `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `email`, `password`, `rank`, `chocolate_preference`, `sorting`, `remember_token`, `created_at`, `updated_at`) VALUES
+SET FOREIGN_KEY_CHECKS = 0;
+TRUNCATE TABLE users;
+TRUNCATE TABLE wishes;
+SET FOREIGN_KEY_CHECKS = 1;
+
+INSERT INTO `users` (`id`, `name`, `email`, `password`, `generation`, `chocolate_preference`, `position`, `remember_token`, `created_at`, `updated_at`) VALUES
 (1, 'GJ', 'gj@famderuiter.com', '$2y$10$NaMsspJztHGLbqrB.hRps.6wgn3hHNwDRNsnihcvQdcFdu6U2f1OW', 1, 'Puur Hazelnoot', 1, 'eCdwrrktvYpnNqBuTxFuaT6ozMnrwRntSv5S3CGG3MwDUAfR87cUWNJHaRUM', '2021-10-25 14:04:45', '2021-10-25 14:04:45'),
 (2, 'Gerda', 'gerda@famderuiter.com', '$2y$10$Oc7ZjQmq0Nqo45UT9y/TvO2C5V9iuRvFvhB3g0PX10Dixlfd4rHN6', 1, 'Puur', 2, 'cX5lsIZ0S1cT5XLRkPZXCYglyYCryNwMg43NzEBvsX7DnxVdBtzlheFmDEMt', '2020-11-20 22:19:35', '2020-11-20 22:19:35'),
 (3, 'Bas', 'deruiterb@gmail.com', '$2y$10$VEvmBvSVbE8JOv7JdgMJZuYRxX9opFYZL/c9MDzxoizxamLCBBEXq', 2, 'Melk Hazelnoot', 10, 'H7MyEPsSIHqAykeaUn7Cr2othW02rTts1zLHTKJFe5vObB5QcOCR99ZI6xhb', '2020-11-30 12:59:43', '2020-11-30 12:59:43'),
@@ -67,29 +43,10 @@ INSERT INTO `users` (`id`, `name`, `email`, `password`, `rank`, `chocolate_prefe
 (13, 'Thijs', 'doriendouma@hotmail.com', '$2y$10$qFwJGrUqeyJ5i.Xajb.FleTLv4MpFlDkMeOcWPVtya9bs/vw0FVyy', 3, 'Caramel Zeezout, Melk Hazelnoot', 14, 'frgYtxOIGeeXpAU83IXiaUZMyOh6f5mEJbQT0vm8X8t2W8pKz4hcchOXTYCu', '2021-06-15 15:44:53', '2021-06-15 15:44:53'),
 (14, 'Daantje', 'doriendouma@hotmail.com', '$2y$10$qFwJGrUqeyJ5i.Xajb.FleTLv4MpFlDkMeOcWPVtya9bs/vw0FVyy', 3, 'Wit', 15, 'Fl9gzpAlW1uB8sgEeXIP3PobarUAusFAjPsQf9srJuJmCAiRIZOvjTnofphy', '2021-11-03 14:49:47', '2021-11-03 14:49:47'),
 (15, 'Elena', 'leannederuiter@gmail.com', '$2y$10$qFwJGrUqeyJ5i.Xajb.FleTLv4MpFlDkMeOcWPVtya9bs/vw0FVyy', 3, 'Melk', 34, 'loRFW4OEI9aIIkymKS5PWjdLPuRd5GncxfkEFAtbMx6wp548YL7evB61SJHU', '2018-05-11 15:22:52', '2021-10-31 21:39:12'),
-(16, 'Alissa', 'lieselotslingerland@gmail.com', '$2y$10$qFwJGrUqeyJ5i.Xajb.FleTLv4MpFlDkMeOcWPVtya9bs/vw0FVyy', 3, 'Melk', 22, 'vXbDjEljQsGP117tEwEod2CoBqAF6N98YFuOOypcr9RzB7ScptCv1zudqzzA', '2018-09-23 11:10:27', '2021-10-25 17:28:24');
+(16, 'Alissa', 'lieselotslingerland@gmail.com', '$2y$10$qFwJGrUqeyJ5i.Xajb.FleTLv4MpFlDkMeOcWPVtya9bs/vw0FVyy', 3, 'Melk', 22, 'vXbDjEljQsGP117tEwEod2CoBqAF6N98YFuOOypcr9RzB7ScptCv1zudqzzA', '2018-09-23 11:10:27', '2021-10-25 17:28:24'),
+(17, 'Frummelien', 'lieselotslingerland@gmail.com', '$2y$10$qFwJGrUqeyJ5i.Xajb.FleTLv4MpFlDkMeOcWPVtya9bs/vw0FVyy', 3, 'Melk', 23, 'vXbDjEljQsGP117tEwEod2CoBqAF6N98YFuOOypcr9RzB7ScptCv1zudqzzA', '2022-02-18 17:24:27', '2022-02-18 17:24:27');
 
 -- --------------------------------------------------------
-
---
--- Tabelstructuur voor tabel `wishes`
---
-
-CREATE TABLE IF NOT EXISTS `wishes` (
-  `id` int(4) NOT NULL,
-  `user_id` int(10) unsigned NOT NULL,
-  `description` varchar(200) DEFAULT NULL,
-  `link` text,
-  `claimed_by` tinyint(4) DEFAULT NULL,
-  `claimed_at` datetime DEFAULT NULL,
-  `created_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `updated_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `deleted_at` datetime DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=1829 DEFAULT CHARSET=latin1;
-
---
--- Gegevens worden geëxporteerd voor tabel `wishes`
---
 
 INSERT INTO `wishes` (`id`, `user_id`, `description`, `link`, `claimed_by`, `claimed_at`, `created_at`, `updated_at`, `deleted_at`) VALUES
 (1, 5, 'decopatch papier en lijm', NULL, NULL, NULL, '0000-00-00 00:00:00', '2011-11-26 15:52:23', '2011-11-26 15:52:23'),
@@ -1928,53 +1885,14 @@ INSERT INTO `wishes` (`id`, `user_id`, `description`, `link`, `claimed_by`, `cla
 (1828, 4, 'thermoskan', 'https://www.bol.com/nl/nl/p/travelr-thermosfles-thermoskan-thermosbeker-thermosflessen-isoleerfles-waterfles-drinkfles-bpa-vrij-geschikt-voor-baby-voeding-roestvrij-staal-750-ml-mat-zwart/9300000032107766/?bltgh=uVTc8HxZpEpzPd5jjClGTQ.uYCrtDc7N1O-R72bnURDug_0_48.52.ProductImage', NULL, NULL, '2021-11-12 13:10:44', '2021-11-12 13:10:44', NULL);
 
 --
--- Indexen voor geëxporteerde tabellen
---
-
---
--- Indexen voor tabel `password_resets`
---
-ALTER TABLE `password_resets`
-  ADD KEY `password_resets_email_index` (`email`),
-  ADD KEY `password_resets_token_index` (`token`);
-
---
--- Indexen voor tabel `users`
+-- AUTO_INCREMENT
 --
 ALTER TABLE `users`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `users_name_unique` (`name`);
+  MODIFY `id` bigint unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=17;
 
---
--- Indexen voor tabel `wishes`
---
 ALTER TABLE `wishes`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `fk_verlanglijstjes_userid` (`user_id`);
+  MODIFY `id` bigint unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=1829;
 
---
--- AUTO_INCREMENT voor geëxporteerde tabellen
---
-
---
--- AUTO_INCREMENT voor een tabel `users`
---
-ALTER TABLE `users`
-  MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=17;
---
--- AUTO_INCREMENT voor een tabel `wishes`
---
-ALTER TABLE `wishes`
-  MODIFY `id` int(4) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=1829;
---
--- Beperkingen voor geëxporteerde tabellen
---
-
---
--- Beperkingen voor tabel `wishes`
---
-ALTER TABLE `wishes`
-  ADD CONSTRAINT `fk_verlanglijstjes_userid` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

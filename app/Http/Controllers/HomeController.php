@@ -11,13 +11,8 @@ final class HomeController extends Controller
 {
     public function show()
     {
-        $wish = Wish::find(1);
-        $user = $wish->user;
-
-        dd(Wish::with('claimedBy')->get());
-
         return view('home', [
-            'table' => $table->all(),
+            'users' => User::orderBy('position')->get(),
         ]);
     }
 }
