@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace Verlanglijstjes;
 
@@ -43,5 +43,10 @@ class Wish extends Model
     public function claimedBy()
     {
         return $this->belongsTo(User::class, 'claimed_by');
+    }
+
+    public function linkPreview()
+    {
+        return $this->hasOne(LinkPreview::class);
     }
 }

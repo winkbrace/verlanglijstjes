@@ -15,7 +15,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::name('home')->get('/', [HomeController::class, 'show']);
+Route::name('home')->get('/', [HomeController::class, 'index']);
+
+Route::name('wish-list')->get('/list/{name}', [WishController::class, 'index']);
 
 Route::middleware('auth')->group(function() {
     Route::name('add-wish')->get('/wish/add', [WishController::class, 'create']);

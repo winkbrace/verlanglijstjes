@@ -1,19 +1,23 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Verlanglijstjes\User;
 
 class WishController extends Controller
 {
     /**
      * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($name)
     {
-        //
+        $user = User::where('name', $name)->first();
+
+        return view('wishes', [
+            'title' => $user->name,
+            'wishes' => $user->wishedItems,
+        ]);
     }
 
     /**
