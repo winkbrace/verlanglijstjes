@@ -13,12 +13,17 @@
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('home')" :active="request()->routeIs('home')">
-                        {{ __('Verlanglijstjes') }}
+                        {{ __('Familie') }}
                     </x-nav-link>
                     @auth
                     <x-nav-link :href="route('add-wish')" :active="request()->routeIs('add-wish')">
                         {{ __('Toevoegen') }}
                     </x-nav-link>
+                        @if (user()->name === 'Gerda')
+                            <x-nav-link :href="route('letters')" :active="request()->routeIs('letters')">
+                                {{ __('Sinterklaasletters') }}
+                            </x-nav-link>
+                        @endif
                     @endauth
                 </div>
             </div>
@@ -28,7 +33,7 @@
                 @auth
                     <x-dropdown align="right" width="48">
                         <x-slot name="trigger">
-                            <button class="flex items-center text-sm font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300 transition duration-150 ease-in-out">
+                            <button class="flex items-center text-base font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300 transition duration-150 ease-in-out">
                                 <div>{{ Auth::user()->name }}</div>
 
                                 <div class="ml-1">
@@ -54,7 +59,7 @@
                     </x-dropdown>
                 @endauth
                 @guest
-                    <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('login') }}">
+                    <a class="underline text-base text-gray-600 hover:text-gray-900" href="{{ route('login') }}">
                         {{ __('Inloggen') }}
                     </a>
                 @endguest
@@ -85,7 +90,7 @@
             @auth
             <div class="px-4">
                 <div class="font-medium text-base text-gray-800">{{ Auth::user()->name }}</div>
-                <div class="font-medium text-sm text-gray-500">{{ Auth::user()->email }}</div>
+                <div class="font-medium text-base text-gray-500">{{ Auth::user()->email }}</div>
             </div>
 
             <div class="mt-3 space-y-1">

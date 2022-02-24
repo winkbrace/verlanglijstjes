@@ -10,8 +10,9 @@ module.exports = {
     theme: {
         extend: {
             fontFamily: {
-                sans: ['Nunito', ...defaultTheme.fontFamily.sans],
+                sans: ['"Hi Melody"', ...defaultTheme.fontFamily.sans],
             },
+            fontSize: '24px'
         },
     },
 

@@ -10,13 +10,13 @@ class WishController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index($name)
+    public function index(string $name)
     {
         $user = User::where('name', $name)->first();
 
         return view('wishes', [
             'title' => $user->name,
-            'wishes' => $user->wishedItems,
+            'wishes' => $user->wishedItems()->whereNull('deleted_at')->get(),
         ]);
     }
 
