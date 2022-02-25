@@ -19,7 +19,7 @@
         <script src="{{ asset('js/app.js') }}" defer></script>
     </head>
     <body class="font-sans antialiased">
-        <div class="min-h-screen bg-gray-100">
+        <div class="flex flex-col h-screen bg-gray-100">
             @include('layouts.navigation')
 
 {{--            @isset($header)--}}
@@ -32,7 +32,7 @@
 {{--            @endisset--}}
 
             <!-- Page Content -->
-            <main>
+            <main class="flex flex-grow flex-row justify-center">
                 {{ $slot }}
             </main>
         </div>

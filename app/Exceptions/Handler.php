@@ -4,6 +4,7 @@ namespace App\Exceptions;
 
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Throwable;
+use Verlanglijstjes\Exceptions\UserNotLoggedIn;
 
 class Handler extends ExceptionHandler
 {
@@ -38,4 +39,14 @@ class Handler extends ExceptionHandler
             //
         });
     }
+
+    public function render($request, Throwable $e)
+    {
+        if ($e instanceof UserNotLoggedIn) {
+            return response(view('errors.403', ['exception' => $e]));
+        }
+
+        return parent::render($request, $e);
+    }
+
 }

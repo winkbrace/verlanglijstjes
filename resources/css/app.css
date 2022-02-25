@@ -13,3 +13,16 @@ h1 {
 h2 {
     font-size: 1.5rem;
 }
+
+/* claim checkbox */
+input.claim-wish:checked + div {
+  @apply border-blue-500;
+}
+input.claim-wish:checked + div svg {
+  @apply block;
+}
+
+.wish-button img {
+    height: 1rem;
+    color: white;
+}
