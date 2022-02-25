@@ -23,6 +23,8 @@ class LinkPreview extends Model
 {
     use HasFactory;
 
+    protected $guarded = ['id'];
+
     protected $casts = [
         'wish_id' => WishIdCast::class,
         'updated_at' => 'immutable_datetime',

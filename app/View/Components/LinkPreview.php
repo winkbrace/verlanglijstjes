@@ -6,10 +6,7 @@ use Illuminate\View\Component;
 
 class LinkPreview extends Component
 {
-    public function __construct()
-    {
-        //
-    }
+    public function __construct(public \Verlanglijstjes\LinkPreview $preview) {}
 
     public function render()
     {
