@@ -34,3 +34,4 @@ sail artisan fetch:avatars
 1. Use Treant.js for creating the family tree on the homepage (see repos/treant-js and https://fperucic.github.io/treant-js/)
 2. When adding a wish, run Embed to fetch the link preview data
 3. Add errors layout and errors/403 and 404 pages
+4. Add gast account

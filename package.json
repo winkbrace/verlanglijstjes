@@ -19,5 +19,9 @@
         "postcss": "^8.1.14",
         "postcss-import": "^12.0.1",
         "tailwindcss": "^2.0.2"
+    },
+    "dependencies": {
+        "raphael": "^2.3.0",
+        "treant-js": "^1.0.1"
     }
 }

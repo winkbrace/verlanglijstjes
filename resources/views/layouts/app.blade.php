@@ -15,6 +15,12 @@
         <!-- Styles -->
         <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 
+        @if(request()->routeIs('home'))
+        <link rel="stylesheet" href="{{ asset('css/treant.css') }}">
+        <script src="/js/treant.js"></script>
+        <script src="/js/family-tree.js"></script>
+        @endif
+
         <!-- Scripts -->
         <script src="{{ asset('js/app.js') }}" defer></script>
     </head>
@@ -33,7 +39,11 @@
 
             <!-- Page Content -->
             <main class="flex flex-grow flex-row justify-center">
-                {{ $slot }}
+                <section class="antialiased bg-gray-100 text-gray-600 pt-1 px-1 md:px-4">
+                    <div class="flex flex-col justify-around h-full">
+                        {{ $slot }}
+                    </div>
+                </section>
             </main>
         </div>
     </body>
