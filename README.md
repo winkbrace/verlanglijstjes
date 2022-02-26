@@ -10,9 +10,27 @@ sail up
 
 Then view on http://localhost
 
+# Populating new data
+
+With the latest rebuild, there is a little more data to fetch. This is designed to run on development once.
+
+## link previews
+
+To fetch link previews of stored wish links, run:
+```shell
+sail artisan fetch:link-previews 
+```
+
+## avatars
+
+To fetch initial avatars of everyone, run this command to fetch them from multiavatar based on their name.
+It will store them at `public/img/avatar-NAME.svg`.
+```shell
+sail artisan fetch:avatars
+```
+
 # TODO
 
-2. Continue creating the blade component for wish-list.blade.php
-3. When adding a wish item, run Embed to fetch the link preview data
-4. Create console script to fetch link preview data for all active wish list items.
-5. Add errors layout and errors/403 and 404 pages
+1. Use Treant.js for creating the family tree on the homepage (see repos/treant-js and https://fperucic.github.io/treant-js/)
+2. When adding a wish, run Embed to fetch the link preview data
+3. Add errors layout and errors/403 and 404 pages

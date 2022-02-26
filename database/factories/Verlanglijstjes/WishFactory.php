@@ -28,7 +28,7 @@ class WishFactory extends Factory
     }
 
     /**
-     * Indicate that the wish item has been claimed
+     * Indicate that the wish has been claimed
      */
     public function claimed(): self
     {
@@ -41,7 +41,7 @@ class WishFactory extends Factory
     }
 
     /**
-     * Indicate that the wish item has been deleted
+     * Indicate that the wish has been deleted
      */
     public function deleted(): self
     {

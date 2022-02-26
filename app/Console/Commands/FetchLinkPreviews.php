@@ -9,12 +9,7 @@ use Verlanglijstjes\Wish;
 class FetchLinkPreviews extends Command
 {
     protected $signature = 'fetch:link-previews';
-    protected $description = 'Fetch link previews for all active wish items with a link';
-
-    public function __construct()
-    {
-        parent::__construct();
-    }
+    protected $description = 'Fetch link previews for all active wishes with a link (dev only)';
 
     public function handle()
     {
