@@ -22,7 +22,7 @@
                     <x-wish-button type="edit" :id="$wish->id" label="Edit"/>
                     <x-wish-button type="delete" :id="$wish->id" label="Delete"/>
                 @else
-                    <x-wish-button type="claim" :id="$wish->id" :claimedBy="$wish->claimed_by" label="Dit geef ik"/>
+                    <x-wish-button type="claim" :id="$wish->id" label="Dit geef ik" :claimedBy="$wish->claimed_by"/>
                 @endif
                 @endauth
             </div>
@@ -31,24 +31,3 @@
     </ul>
 
 </div>
-
-<script>
-/**
- * Handle clicks on claim, edit and delete buttons
- */
-function handleClick(type, wishId) {
-    const button = document.getElementById(type + wishId);
-    if (type === 'claim') {
-        // tick checkbox
-        const svg = button.getElementsByClassName('my-claim')[0];
-        const action = svg.classList.contains('hidden') ? 'claim' : 'unclaim';
-        svg.classList.toggle('hidden');
-        // send to backend
-        axios.post('/api/wish/claim', { id: wishId, action: action });
-    } else if (type === 'edit') {
-
-    } else if (type === 'delete') {
-
-    }
-}
-</script>

@@ -5625,6 +5625,28 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 window.Alpine = alpinejs__WEBPACK_IMPORTED_MODULE_0__["default"];
 alpinejs__WEBPACK_IMPORTED_MODULE_0__["default"].start();
+/**
+ * Handle clicks on claim, edit and delete buttons
+ */
+
+window.handleClick = function (type, wishId) {
+  console.log(type, wishId);
+  var button = document.getElementById(type + wishId);
+
+  if (type === 'claim') {
+    // tick checkbox
+    var svg = button.getElementsByClassName('my-claim')[0];
+    var action = svg.classList.contains('hidden') ? 'claim' : 'unclaim';
+    svg.classList.toggle('hidden'); // send to backend
+
+    axios.post('/api/wish/claim', {
+      id: wishId,
+      action: action
+    });
+  } else if (type === 'edit') {
+    window.location.href('/wish/edit/' + wishId);
+  } else if (type === 'delete') {}
+};
 
 /***/ }),
 

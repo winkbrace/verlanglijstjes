@@ -28,17 +28,8 @@
         <div class="flex flex-col h-screen bg-gray-100">
             @include('layouts.navigation')
 
-{{--            @isset($header)--}}
-{{--            <!-- Page Heading -->--}}
-{{--            <header class="bg-white shadow">--}}
-{{--                <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">--}}
-{{--                    {{ $header }}--}}
-{{--                </div>--}}
-{{--            </header>--}}
-{{--            @endisset--}}
-
             <!-- Page Content -->
-            <main class="">
+            <main class="flex flex-grow justify-center">
                 <section class="antialiased bg-gray-100 text-gray-600 p-4">
                     <div class="flex flex-col justify-around h-full">
                         {{ $slot }}

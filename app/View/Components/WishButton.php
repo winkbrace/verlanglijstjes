@@ -11,8 +11,8 @@ class WishButton extends Component
     public function __construct(
         public string $type,
         public WishId $id,
-        public ?UserId $claimedBy,
         public string $label,
+        public ?UserId $claimedBy = null,
     ) {}
 
     public function render()

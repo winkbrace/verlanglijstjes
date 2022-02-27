@@ -27,16 +27,16 @@
 .node-name { font-weight: bold; }
 
 .familyNode {
-    padding-right: 1rem;
+    padding-right: 0.75rem;
     border-radius: 9999px;
     width: 200px;
-    height: 4rem;
+    height: 3.5rem;
 }
 
 .familyNode img {
-    margin-right: 1rem;
-    height: 4rem;
-    width: 4rem;
+    margin-right: 0.25rem;
+    height: 3.5rem;
+    width: 3.5rem;
 }
 
 .familyNode p {
@@ -51,7 +51,7 @@
 }
 .familyNode.partner img {
     float: right;
-    margin-left: 1rem;
+    margin-left: 0.25rem;
     margin-right: 0;
 }
 .familyNode.partner p {

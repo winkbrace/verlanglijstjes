@@ -52,7 +52,7 @@
                 @auth
                     <x-dropdown align="right" width="48">
                         <x-slot name="trigger">
-                            <button class="flex items-center text-2xl font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300 transition duration-150 ease-in-out">
+                            <button class="flex items-center text-xl font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300 transition duration-150 ease-in-out">
                                 <div>{{ Auth::user()->name }}</div>
 
                                 <div class="ml-1">
@@ -87,7 +87,7 @@
             <!-- Hamburger -->
             <div class="-mr-2 flex items-center sm:hidden">
                 @auth
-                    <div class="text-2xl text-gray-800 pr-4">{{ user()->name }}</div>
+                    <div class="text-xl text-gray-800 pr-4">{{ user()->name }}</div>
                 @endauth
 
                 <button @click="open = ! open" class="inline-flex items-center justify-center p-2 rounded-full text-gray-400 hover:text-gray-500 bg-gray-100 focus:outline-none focus:text-gray-500 transition duration-150 ease-in-out">

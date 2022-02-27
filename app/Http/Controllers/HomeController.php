@@ -2,15 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Verlanglijstjes\User;
-use Verlanglijstjes\Wish;
-
 final class HomeController extends Controller
 {
     public function index()
     {
-        return view('home', [
-            'users' => User::orderBy('position')->get(),
-        ]);
+        return view('home');
     }
 }

@@ -16,7 +16,7 @@ class WishController extends Controller
     {
         $user = User::where('name', $name)->first();
 
-        return view('wishes', [
+        return view('wishes/index', [
             'title' => $user->name,
             'wishes' => $user->wishedItems()->whereNull('deleted_at')->get(),
         ]);
@@ -29,7 +29,7 @@ class WishController extends Controller
      */
     public function create()
     {
-        //
+        return view('wishes/add');
     }
 
     /**
