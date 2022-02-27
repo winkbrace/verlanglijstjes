@@ -14,7 +14,7 @@ abstract class Id implements ValueObject
         $this->id = $id;
     }
 
-    public function equals(ValueObject|Id $object) : bool
+    public function equals(ValueObject|Id|null $object) : bool
     {
         if ( ! $object instanceof static) {
             return false;

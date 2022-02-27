@@ -1,8 +1,13 @@
 const config = {
         container: "#custom-colored",
         nodeAlign: "BOTTOM",
-        connebasrs: {
-            type: 'bCurve'
+        connectors: {
+            type: 'bCurve',
+            style: {
+                // hide the lines
+                'stroke-opacity': 0,
+                'stroke-width': 0,
+            },
         },
         node: {
             HTMLclass: 'familyNode'
@@ -34,15 +39,15 @@ const config = {
 
     gezin1 = {
         pseudo: true,
-        parent: gj,
+        parent: gerda,
     },
     gezin2 = {
         pseudo: true,
-        parent: gj,
+        parent: gerda,
     },
     gezin3 = {
         pseudo: true,
-        parent: gj,
+        parent: gerda,
     },
 
     bas = {
@@ -139,7 +144,7 @@ const config = {
         link: {
             href: "/list/Sepp"
         },
-        HTMLclass: 'shadow bg-emerald-500',
+        HTMLclass: 'shadow bg-cyan-400',
     },
 
     // Den Haag

@@ -21,17 +21,14 @@ To fetch link previews of stored wish links, run:
 sail artisan fetch:link-previews 
 ```
 
-## avatars
-
-To fetch initial avatars of everyone, run this command to fetch them from multiavatar based on their name.
-It will store them at `public/img/avatar-NAME.svg`.
-```shell
-sail artisan fetch:avatars
-```
-
 # TODO
 
-1. Use Treant.js for creating the family tree on the homepage (see repos/treant-js and https://fperucic.github.io/treant-js/)
+1. Finish handling click on edit, delete and claim buttons
 2. When adding a wish, run Embed to fetch the link preview data
 3. Add errors layout and errors/403 and 404 pages
 4. Add gast account
+
+# Deployment
+
+1. On first deploy remember to set APP_BASE_PATH, APP_URL, SESSION_DOMAIN, etc in the env file
+2. 

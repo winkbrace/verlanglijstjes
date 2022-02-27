@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\WishRequest;
 use Illuminate\Http\Request;
 use Verlanglijstjes\User;
+use Verlanglijstjes\Wish;
 
 class WishController extends Controller
 {
@@ -84,5 +86,20 @@ class WishController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function claim(WishRequest $request)
+    {
+        $wish = Wish::find($request->get('id'));
+        $user = user();
+
+        if ($request->get('action') == 'claim') {
+            $wish->claimed_at = now();
+            $wish->claimed_by = $user->id;
+        } else {
+            $wish->claimed_at = null;
+            $wish->claimed_by = null;
+        }
+        $wish->save();
     }
 }

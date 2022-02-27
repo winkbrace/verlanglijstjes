@@ -5,7 +5,7 @@
         </h2>
     </x-slot>
 
-    <div class="chart" id="custom-colored"> Loading... </div>
+    <div class="chart" id="custom-colored"></div>
 
     <script>
         document.addEventListener("DOMContentLoaded", function() {

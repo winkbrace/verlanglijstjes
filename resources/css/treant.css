@@ -1,5 +1,5 @@
 /* required LIB STYLES */
-/* .Treant se automatski dodaje na svaki chart conatiner */
+/* .Treant se automatski dodaje na svaki chart container */
 .Treant { position: relative; overflow: hidden; padding: 0 !important; }
 .Treant > .node,
 .Treant > .pseudo { position: absolute; display: block; visibility: hidden; }
@@ -10,8 +10,20 @@
 .Treant .collapsed .collapse-switch { background-color: #868DEE; }
 .Treant > .node img { border: none; float: left; }
 
-/* optional Container STYLES */
-.chart { height: 800px; margin: 5px; width: 1300px; }
+.chart { height: 600px; margin: 5px; width: 340px; }
+@media screen and (min-width: 640px) {
+    .chart { height: 600px; margin: 5px; width: 600px; }
+}
+@media screen and (min-width: 768px) {
+    .chart { height: 800px; margin: 5px; width: 720px; }
+}
+@media screen and (min-width: 1024px) {
+    .chart { height: 800px; margin: 5px; width: 980px; }
+}
+@media screen and (min-width: 1280px) {
+    .chart { height: 800px; margin: 5px; width: 1260px; }
+}
+
 .node-name { font-weight: bold; }
 
 .familyNode {

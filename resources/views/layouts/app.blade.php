@@ -38,8 +38,8 @@
 {{--            @endisset--}}
 
             <!-- Page Content -->
-            <main class="flex flex-grow flex-row justify-center">
-                <section class="antialiased bg-gray-100 text-gray-600 pt-1 px-1 md:px-4">
+            <main class="">
+                <section class="antialiased bg-gray-100 text-gray-600 p-4">
                     <div class="flex flex-col justify-around h-full">
                         {{ $slot }}
                     </div>

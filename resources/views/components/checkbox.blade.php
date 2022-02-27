@@ -1,17 +1,15 @@
-<div class="flex items-center">
-    {{-- We make the real checkbox transparent and place it over the svg --}}
-    <input type="checkbox" id="claim-{{ $wishId }}" name="claim-{{ $wishId }}" value="yes" class="claim-wish opacity-0 absolute h-8 w-8"/>
-
-    <div class="bg-white border-2 rounded-md border-blue-400 w-8 h-8 flex flex-shrink-0 justify-center items-center focus-within:border-blue-500">
-        <svg class="fill-current hidden w-3 h-3 text-blue-600 pointer-events-none" version="1.1" viewBox="0 0 17 12" xmlns="http://www.w3.org/2000/svg">
-            <g fill="none" fill-rule="evenodd">
-                <g transform="translate(-9 -11)" fill="#1F73F1" fill-rule="nonzero">
-                    <path d="m25.576 11.414c0.56558 0.55188 0.56558 1.4439 0 1.9961l-9.404 9.176c-0.28213 0.27529-0.65247 0.41385-1.0228 0.41385-0.37034 0-0.74068-0.13855-1.0228-0.41385l-4.7019-4.588c-0.56584-0.55188-0.56584-1.4442 0-1.9961 0.56558-0.55214 1.4798-0.55214 2.0456 0l3.679 3.5899 8.3812-8.1779c0.56558-0.55214 1.4798-0.55214 2.0456 0z"/>
-                </g>
-            </g>
+<div class="flex items-center mb-1">
+    {{-- This is an svg that looks like a checkbox, but there is no checkbox here --}}
+    <div class="bg-white border-2 rounded-md border-amber-400 w-5 h-5 flex flex-shrink-0 justify-center items-center focus-within:border-amber-500 md:mr-2">
+        {{-- the "checkbox" outline --}}
+        <svg class="fill-current hidden w-3 h-3 text-amber-600 pointer-events-none" viewBox="0 0 17 12"></svg>
+        {{-- the claim check mark --}}
+        <svg class="{{ user()->id->equals($claimedBy) ? '' : 'hidden' }} my-claim fill-current text-green-500" viewBox="0 0 16 16">
+            <path d="M13.485 1.431a1.473 1.473 0 0 1 2.104 2.062l-7.84 9.801a1.473 1.473 0 0 1-2.12.04L.431 8.138a1.473 1.473 0 0 1 2.084-2.083l4.111 4.112 6.82-8.69a.486.486 0 0 1 .04-.045z"/>
+        </svg>
+        {{-- the reserved cross --}}
+        <svg class="{{ $claimedBy !== null && ! user()->id->equals($claimedBy) ? '' : 'hidden' }} claimed fill-current text-red-500" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M11.293 3.293a1 1 0 1 1 1.414 1.414L9.414 8l3.293 3.293a1 1 0 0 1-1.414 1.414L8 9.414l-3.293 3.293a1 1 0 0 1-1.414-1.414L6.586 8 3.293 4.707a1 1 0 0 1 1.414-1.414L8 6.586l3.293-3.293Z"/>
         </svg>
     </div>
-
-    {{-- Add a label for screen readers but don't show it --}}
-    <label for="claim-{{ $wishId }}" class="select-none hidden">Reserveer</label>
 </div>
