@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\WishActionRequest;
 use App\Http\Requests\WishRequest;
+use App\View\Components\Alert;
 use Illuminate\Http\Request;
 use Verlanglijstjes\User;
 use Verlanglijstjes\Wish;
@@ -24,8 +26,6 @@ class WishController extends Controller
 
     /**
      * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
      */
     public function create()
     {
@@ -34,20 +34,24 @@ class WishController extends Controller
 
     /**
      * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(WishRequest $request)
     {
-        //
+        $user = user();
+
+        Wish::create([
+            'user_id' => $user->id,
+            'description' => $request->input('gift'),
+            'link' => $request->input('link'),
+        ]);
+
+        return redirect()
+            ->route('wish-list', ['name' => $user->name])
+            ->with('alert', ['"'.$request->input('gift').'" is toegevoegd' => Alert::SUCCESS]);
     }
 
     /**
      * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
@@ -56,9 +60,6 @@ class WishController extends Controller
 
     /**
      * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
@@ -67,10 +68,6 @@ class WishController extends Controller
 
     /**
      * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
@@ -79,21 +76,18 @@ class WishController extends Controller
 
     /**
      * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
         //
     }
 
-    public function claim(WishRequest $request)
+    public function claim(WishActionRequest $request)
     {
-        $wish = Wish::find($request->get('id'));
+        $wish = Wish::find($request->input('id'));
         $user = user();
 
-        if ($request->get('action') == 'claim') {
+        if ($request->input('action') === 'claim') {
             $wish->claimed_at = now();
             $wish->claimed_by = $user->id;
         } else {

@@ -5629,7 +5629,7 @@ alpinejs__WEBPACK_IMPORTED_MODULE_0__["default"].start();
  * Handle clicks on claim, edit and delete buttons
  */
 
-window.handleClick = function (type, wishId) {
+window.clickWishButton = function (type, wishId) {
   console.log(type, wishId);
   var button = document.getElementById(type + wishId);
 

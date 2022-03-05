@@ -1,28 +1,33 @@
-<?php declare(strict_types=1);
+<?php
 
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Validation\Rule;
 
-final class WishRequest extends FormRequest
+/**
+ * FormRequest for adding or editing a wish.
+ */
+class WishRequest extends FormRequest
 {
     public function authorize()
     {
         return Auth::check();
     }
 
-    /**
-     * Get the validation rules that apply to the request.
-     *
-     * @return array
-     */
     public function rules()
     {
         return [
-            'id' => ['required', 'numeric'],
-            'action' => ['required', Rule::in('claim', 'unclaim')],
+            'gift' => 'required|string',
+            'link' => 'nullable|url'
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'gift.required' => 'Voer een cadeau in',
+            'link.url' => 'De link moet een complete url zijn (dus beginnen met http)',
         ];
     }
 }

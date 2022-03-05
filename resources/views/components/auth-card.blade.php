@@ -1,7 +1,7 @@
-<div class="flex flex-col sm:justify-center items-center sm:pt-0 bg-gray-100" style="min-width: 20rem;">
+<div class="mt-4 md:mt-20 items-center sm:pt-0 bg-gray-100 md:w-80">
     <h1>{{ $title }}</h1>
 
-    <div class="w-full sm:max-w-md mt-6 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg">
+    <div class="w-full sm:max-w-md mt-6 px-6 py-4 bg-white shadow-md overflow-hidden rounded-lg">
         {{ $slot }}
     </div>
 </div>

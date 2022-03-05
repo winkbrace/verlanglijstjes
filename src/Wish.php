@@ -25,6 +25,12 @@ class Wish extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'user_id',
+        'description',
+        'link'
+    ];
+
     protected $casts = [
         'id' => WishIdCast::class,
         'user_id' => UserIdCast::class,

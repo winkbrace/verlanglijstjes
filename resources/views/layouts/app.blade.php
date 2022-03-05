@@ -24,16 +24,18 @@
         <!-- Scripts -->
         <script src="{{ asset('js/app.js') }}" defer></script>
     </head>
-    <body class="font-sans antialiased">
+    <body class="font-sans antialiased bg-gray-100">
         <div class="flex flex-col h-screen bg-gray-100">
             @include('layouts.navigation')
 
+            @if(session('alert'))
+                <x-alert :type="head(session('alert'))" :message="key(session('alert'))"></x-alert>
+            @endif
+
             <!-- Page Content -->
             <main class="flex flex-grow justify-center">
-                <section class="antialiased bg-gray-100 text-gray-600 p-4">
-                    <div class="flex flex-col justify-around h-full">
-                        {{ $slot }}
-                    </div>
+                <section class="antialiased bg-gray-100 text-gray-600 p-0 md:p-4">
+                    {{ $slot }}
                 </section>
             </main>
         </div>

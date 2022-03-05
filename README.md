@@ -23,7 +23,7 @@ sail artisan fetch:link-previews
 
 # TODO
 
-1. Finish handling click on edit, delete and claim buttons
+1. Finish handling click on edit, delete
 2. When adding a wish, run Embed to fetch the link preview data
 3. Add errors layout and errors/403 and 404 pages
 4. Add gast account

@@ -7,7 +7,7 @@ Alpine.start();
 /**
  * Handle clicks on claim, edit and delete buttons
  */
-window.handleClick = function(type, wishId) {
+window.clickWishButton = function(type, wishId) {
     console.log(type, wishId);
     const button = document.getElementById(type + wishId);
     if (type === 'claim') {
@@ -16,7 +16,7 @@ window.handleClick = function(type, wishId) {
         const action = svg.classList.contains('hidden') ? 'claim' : 'unclaim';
         svg.classList.toggle('hidden');
         // send to backend
-        axios.post('/api/wish/claim', { id: wishId, action: action });
+        axios.post('/api/wish/claim', {id: wishId, action: action});
 
     } else if (type === 'edit') {
         window.location.href('/wish/edit/' + wishId);
