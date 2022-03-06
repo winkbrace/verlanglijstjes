@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Auth;
 /**
  * FormRequest for adding or editing a wish.
  */
-class WishRequest extends FormRequest
+class AddWishRequest extends FormRequest
 {
     public function authorize()
     {

@@ -21,8 +21,9 @@ Route::name('wish-list')->get('/list/{name}', [WishController::class, 'index']);
 
 Route::middleware('auth')->group(function() {
     Route::name('add-wish')->get('/wish/add', [WishController::class, 'create']);
-    Route::name('add-wish')->post('/wish/add', [WishController::class, 'store']);
+    Route::name('store-wish')->post('/wish/store', [WishController::class, 'store']);
     Route::name('edit-wish')->get('/wish/edit/{id}', [WishController::class, 'edit']);
+    Route::name('update-wish')->post('/wish/update/{id}', [WishController::class, 'update']);
 });
 
 require __DIR__.'/auth.php';

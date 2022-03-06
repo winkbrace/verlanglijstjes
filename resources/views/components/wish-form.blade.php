@@ -2,17 +2,17 @@
     <!-- Validation Errors -->
     <x-auth-validation-errors class="mb-4" :errors="$errors" />
 
-    <form method="POST" action="{{ route('add-wish') }}">
+    <form method="POST" action="{{ $action }}">
         @csrf
 
         <div>
             <x-label for="gift" :value="__('Cadeau')" />
-            <x-input id="gift" class="block mt-1 w-full" type="text" name="gift" :value="old('gift')" required autofocus />
+            <x-input id="gift" class="block mt-1 w-full" type="text" name="gift" :value="old('gift', $wish ? $wish->description : null)" required autofocus />
         </div>
 
         <div class="mt-4">
             <x-label for="link" :value="__('Link')" />
-            <x-input id="link" class="block mt-1 w-full" type="text" name="link" :value="old('link')" />
+            <x-input id="link" class="block mt-1 w-full" type="text" name="link" :value="old('link', $wish ? $wish->link : null)" />
         </div>
 
         <div class="flex items-center justify-end mt-4">

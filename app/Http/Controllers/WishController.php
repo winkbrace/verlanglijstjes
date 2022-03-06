@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\DeleteWishRequest;
+use App\Http\Requests\UpdateWishRequest;
 use App\Http\Requests\WishActionRequest;
-use App\Http\Requests\WishRequest;
+use App\Http\Requests\AddWishRequest;
 use App\View\Components\Alert;
-use Illuminate\Http\Request;
 use Verlanglijstjes\User;
 use Verlanglijstjes\Wish;
 
@@ -36,7 +36,7 @@ class WishController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(WishRequest $request)
+    public function store(AddWishRequest $request)
     {
         $user = user();
 
@@ -64,15 +64,27 @@ class WishController extends Controller
      */
     public function edit($id)
     {
-        //
+        $id = (int) $id;
+
+        return view('wishes/edit', [
+            'id' => $id, // We pass the received id here for the route() helper in case the wish with this id doesn't exist.
+            'wish' => Wish::find($id),
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, $id)
+    public function update(UpdateWishRequest $request, $id)
     {
-        //
+        $wish = Wish::find($id);
+        $wish->description = $request->input('gift');
+        $wish->link = $request->input('link');
+        $wish->save();
+
+        return redirect()
+            ->route('wish-list', ['name' => user()->name])
+            ->with('alert', ['"'.$request->input('gift').'" is aangepast.' => Alert::SUCCESS]);
     }
 
     /**
