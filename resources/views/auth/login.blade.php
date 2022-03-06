@@ -1,10 +1,12 @@
-<x-guest-layout>
+<x-app-layout>
     <x-auth-card title="Inloggen">
         <!-- Session Status -->
         <x-auth-session-status class="mb-4" :status="session('status')" />
 
         <!-- Validation Errors -->
         <x-auth-validation-errors class="mb-4" :errors="$errors" />
+
+        @dump(\Illuminate\Support\Facades\App::getLocale())
 
         <form method="POST" action="{{ route('login') }}">
             @csrf
@@ -35,11 +37,11 @@
             </div>
 
             <div class="flex items-center justify-end mt-4">
-                @if (Route::has('password.request'))
-                    <a class="underline text-base text-gray-600 hover:text-gray-900" href="{{ route('password.request') }}">
-                        {{ __('Wachtwoord vergeten?') }}
-                    </a>
-                @endif
+{{--                @if (Route::has('password.request'))--}}
+{{--                    <a class="underline text-base text-gray-600 hover:text-gray-900" href="{{ route('password.request') }}">--}}
+{{--                        {{ __('Wachtwoord vergeten?') }}--}}
+{{--                    </a>--}}
+{{--                @endif--}}
 
                 <x-button class="ml-3">
                     {{ __('Inloggen') }}
@@ -47,4 +49,4 @@
             </div>
         </form>
     </x-auth-card>
-</x-guest-layout>
+</x-app-layout>

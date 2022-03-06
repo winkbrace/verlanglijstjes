@@ -6,6 +6,7 @@ use App\Http\Requests\DeleteWishRequest;
 use App\Http\Requests\UpdateWishRequest;
 use App\Http\Requests\WishActionRequest;
 use App\Http\Requests\AddWishRequest;
+use App\Jobs\FetchLinkPreview;
 use App\View\Components\Alert;
 use Verlanglijstjes\User;
 use Verlanglijstjes\Wish;
@@ -40,11 +41,16 @@ class WishController extends Controller
     {
         $user = user();
 
-        Wish::create([
+        /** @var Wish $wish */
+        $wish = Wish::create([
             'user_id' => $user->id,
             'description' => $request->input('gift'),
             'link' => $request->input('link'),
         ]);
+
+        if ($wish->link) {
+            $this->fetchLinkPreview($wish->id->toInt(), $wish->link);
+        }
 
         return redirect()
             ->route('wish-list', ['name' => $user->name])
@@ -77,10 +83,16 @@ class WishController extends Controller
      */
     public function update(UpdateWishRequest $request, $id)
     {
+        $id = (int) $id;
+
         $wish = Wish::find($id);
         $wish->description = $request->input('gift');
         $wish->link = $request->input('link');
         $wish->save();
+
+        if ($wish->link) {
+            $this->fetchLinkPreview($id, $wish->link);
+        }
 
         return redirect()
             ->route('wish-list', ['name' => user()->name])
@@ -108,5 +120,14 @@ class WishController extends Controller
             $wish->claimed_by = null;
         }
         $wish->save();
+    }
+
+    private function fetchLinkPreview(int $id, string $url): void
+    {
+        try {
+            dispatch(new FetchLinkPreview($id, $url));
+        } catch (\Throwable) {
+            // No problem
+        }
     }
 }
