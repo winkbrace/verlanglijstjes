@@ -6,8 +6,6 @@
         <!-- Validation Errors -->
         <x-auth-validation-errors class="mb-4" :errors="$errors" />
 
-        @dump(\Illuminate\Support\Facades\App::getLocale())
-
         <form method="POST" action="{{ route('login') }}">
             @csrf
 

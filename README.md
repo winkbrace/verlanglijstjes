@@ -34,7 +34,6 @@ Note: after running that script I manually updated avatars for people who got an
 # TODO
 
 3. Add errors layout and errors/403 and 404 pages
-4. Add gast account
 
 # Deployment
 

@@ -20,29 +20,31 @@
                     </x-nav-link>
 
                     @auth
-                    <x-nav-link :href="route('wish-list', ['name' => user()->name])" :active="request()->routeIs('wish-list') && user()->name == request()->route('name')">
-                        <svg class="h-6 pb-1 mr-1 stroke-current fill-current" viewBox="0 0 16 16">
-                            <path d="M11 8a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
-                            <path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2v9.255S12 12 8 12s-5 1.755-5 1.755V2a1 1 0 0 1 1-1h5.5v2z"/>
-                        </svg>
-                        {{ __('Mijn lijst') }}
-                    </x-nav-link>
-
-                    <x-nav-link :href="route('add-wish')" :active="request()->routeIs('add-wish')">
-                        <svg class="h-8 pb-1 mr-1 stroke-current" viewBox="0 0 24 24" fill="none">
-                            <path d="M12 8v3m0 0v3m0-3h3m-3 0H9" stroke-width="2" stroke-linecap="round"/>
-                            <path d="M14 19c3.771 0 5.657 0 6.828-1.172C22 16.657 22 14.771 22 11c0-3.771 0-5.657-1.172-6.828C19.657 3 17.771 3 14 3h-4C6.229 3 4.343 3 3.172 4.172 2 5.343 2 7.229 2 11c0 3.771 0 5.657 1.172 6.828.653.654 1.528.943 2.828 1.07" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                            <path d="M14 19c-1.236 0-2.598.5-3.841 1.145-1.998 1.037-2.997 1.556-3.489 1.225-.492-.33-.399-1.355-.212-3.404L6.5 17.5" stroke-width="2" stroke-linecap="round"/>
-                        </svg>
-                        {{ __('Nieuw') }}
-                    </x-nav-link>
-
-                    @if (user()->name === 'Gerda')
-                        <x-nav-link :href="route('letters')" :active="request()->routeIs('letters')">
-                            {{ __('Sinterklaasletters') }}
+                    @if (user()->name !== 'Gast')
+                        <x-nav-link :href="route('wish-list', ['name' => user()->name])" :active="request()->routeIs('wish-list') && user()->name == request()->route('name')">
+                            <svg class="h-6 pb-1 mr-1 stroke-current fill-current" viewBox="0 0 16 16">
+                                <path d="M11 8a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+                                <path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2v9.255S12 12 8 12s-5 1.755-5 1.755V2a1 1 0 0 1 1-1h5.5v2z"/>
+                            </svg>
+                            {{ __('Mijn lijst') }}
                         </x-nav-link>
-                    @endif
 
+                        <x-nav-link :href="route('add-wish')" :active="request()->routeIs('add-wish')">
+                            <svg class="h-8 pb-1 mr-1 stroke-current" viewBox="0 0 24 24" fill="none">
+                                <path d="M12 8v3m0 0v3m0-3h3m-3 0H9" stroke-width="2" stroke-linecap="round"/>
+                                <path d="M14 19c3.771 0 5.657 0 6.828-1.172C22 16.657 22 14.771 22 11c0-3.771 0-5.657-1.172-6.828C19.657 3 17.771 3 14 3h-4C6.229 3 4.343 3 3.172 4.172 2 5.343 2 7.229 2 11c0 3.771 0 5.657 1.172 6.828.653.654 1.528.943 2.828 1.07" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M14 19c-1.236 0-2.598.5-3.841 1.145-1.998 1.037-2.997 1.556-3.489 1.225-.492-.33-.399-1.355-.212-3.404L6.5 17.5" stroke-width="2" stroke-linecap="round"/>
+                            </svg>
+                            {{ __('Nieuw') }}
+                        </x-nav-link>
+
+                        @if (user()->name === 'Gerda')
+                            <x-nav-link :href="route('letters')" :active="request()->routeIs('letters')">
+                                {{ __('Sinterklaasletters') }}
+                            </x-nav-link>
+                        @endif
+
+                    @endif
                     @endauth
                 </div>
             </div>

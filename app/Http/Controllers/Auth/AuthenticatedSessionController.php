@@ -32,7 +32,12 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        return redirect()->route('wish-list', ['name' => user()->name]);
+        $name = user()->name;
+        if ($name === 'Gast') {
+            return redirect()->route('home');
+        }
+
+        return redirect()->route('wish-list', ['name' => $name]);
     }
 
     /**
