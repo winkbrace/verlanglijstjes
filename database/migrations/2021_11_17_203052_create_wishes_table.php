@@ -21,7 +21,7 @@ class CreateWishesTable extends Migration
             $table->foreignId('claimed_by')->nullable()->references('id')->on('users');
             $table->timestamp('claimed_at')->nullable();
             $table->timestamps();
-            $table->timestamp('deleted_at')->nullable();
+            $table->softDeletes();
         });
     }
 

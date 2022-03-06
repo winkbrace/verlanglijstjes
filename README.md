@@ -21,6 +21,16 @@ To fetch link previews of stored wish links, run:
 sail artisan fetch:link-previews 
 ```
 
+## avatars
+
+To fetch initial avatars of everyone, run this command to fetch them from multiavatar based on their name.
+It will store them at `public/img/avatar-NAME.svg`.
+```shell
+sail artisan fetch:avatars
+```
+
+Note: after running that script I manually updated avatars for people who got an ugly one. Very easy, actually.
+
 # TODO
 
 1. Finish handling click on edit, delete

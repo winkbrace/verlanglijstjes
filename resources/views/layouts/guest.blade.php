@@ -19,8 +19,10 @@
         <script src="{{ asset('js/app.js') }}" defer></script>
     </head>
     <body class="font-sans antialiased bg-gray-100">
-        <div class="flex flex-col h-screen bg-gray-100 text-gray-900 antialiased">
-            {{ $slot }}
-        </div>
+        <main class="flex flex-grow justify-center">
+            <div class="flex flex-col h-screen bg-gray-100 text-gray-900 antialiased">
+                {{ $slot }}
+            </div>
+        </main>
     </body>
 </html>

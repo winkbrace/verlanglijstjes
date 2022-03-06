@@ -22,6 +22,7 @@
     },
     "dependencies": {
         "raphael": "^2.3.0",
+        "tailwind-toast": "^1.1.0",
         "treant-js": "^1.0.1"
     }
 }

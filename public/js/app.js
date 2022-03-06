@@ -5622,6 +5622,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var alpinejs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! alpinejs */ "./node_modules/alpinejs/dist/module.esm.js");
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
+var _require = __webpack_require__(/*! tailwind-toast */ "./node_modules/tailwind-toast/twtoast.js"),
+    toast = _require.toast;
+
 
 window.Alpine = alpinejs__WEBPACK_IMPORTED_MODULE_0__["default"];
 alpinejs__WEBPACK_IMPORTED_MODULE_0__["default"].start();
@@ -5630,7 +5633,6 @@ alpinejs__WEBPACK_IMPORTED_MODULE_0__["default"].start();
  */
 
 window.clickWishButton = function (type, wishId) {
-  console.log(type, wishId);
   var button = document.getElementById(type + wishId);
 
   if (type === 'claim') {
@@ -5644,8 +5646,24 @@ window.clickWishButton = function (type, wishId) {
       action: action
     });
   } else if (type === 'edit') {
-    window.location.href('/wish/edit/' + wishId);
-  } else if (type === 'delete') {}
+    window.location.href = '/wish/edit/' + wishId;
+  } else if (type === 'delete') {
+    axios.post('/api/wish/delete/' + wishId).then(function () {
+      var li = button.closest('li');
+      li.classList.add('transition-all', 'duration-500', 'ease-in-out', 'opacity-0');
+      setTimeout(function () {
+        li.classList.add('hidden');
+      }, 500);
+    })["catch"](function () {
+      toast().danger('Oeps!', 'Deleten is niet gelukt.')["with"]({
+        color: 'bg-red-400',
+        positionY: 'top',
+        positionX: 'end',
+        shape: 'pill',
+        duration: 3000
+      }).show();
+    });
+  }
 };
 
 /***/ }),
@@ -23111,6 +23129,453 @@ process.chdir = function (dir) {
 };
 process.umask = function() { return 0; };
 
+
+/***/ }),
+
+/***/ "./node_modules/tailwind-toast/classes/Snackbar.js":
+/*!*********************************************************!*\
+  !*** ./node_modules/tailwind-toast/classes/Snackbar.js ***!
+  \*********************************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+const { snackbar } = __webpack_require__(/*! ../twtoast */ "./node_modules/tailwind-toast/twtoast.js");
+const h = __webpack_require__(/*! ../utils/helpers */ "./node_modules/tailwind-toast/utils/helpers.js");
+const options = __webpack_require__(/*! ../utils/options.json */ "./node_modules/tailwind-toast/utils/options.json");
+const numbers = [
+  "one",
+  "two",
+  "three",
+  "four",
+  "five",
+  "six",
+  "seven",
+  "eight",
+  "nine",
+  "zero",
+  "ten",
+  "eleven",
+];
+
+class Snackbar {
+  constructor(
+    color,
+    icon,
+    duration,
+    positionX,
+    positionY,
+    fontColor,
+    fontTone,
+    shape,
+    speed
+  ) {
+    (this.color = color),
+      (this.icon = icon),
+      (this.duration = duration),
+      (this.positionX = positionX),
+      (this.positionY = positionY),
+      (this.fontColor = fontColor),
+      (this.fontTone = fontTone),
+      (this.shape = shape),
+      (this.speed = speed),
+      (this.buttons = []),
+      this.html,
+      this.id,
+      this.title,
+      this.message;
+  }
+
+  as(shape) {
+    this.shape = shape;
+    return this;
+  }
+
+  for(ms) {
+    this.duration = ms;
+    return this;
+  }
+
+  from(positionY, positionX = this.positionX) {
+    this.positionY = positionY;
+    this.positionX = positionX;
+    return this;
+  }
+
+  with(params) {
+    Object.keys(params).forEach((p) => {
+      let object = params;
+      if (options.includes(p)) {
+        this[p] = object[p];
+      }
+    });
+    return this;
+  }
+
+  default(title, message) {
+    this.title = title;
+    this.message = message;
+    return this;
+  }
+
+  danger(title, message) {
+    this.title = title;
+    this.message = message;
+    this.color = "red";
+    this.fontColor = "gray";
+    this.icon = "fas fa-hand-paper";
+    return this;
+  }
+
+  success(title, message) {
+    this.title = title;
+    this.message = message;
+    this.color = "green";
+    this.fontColor = "gray";
+    this.icon = "fas fa-check";
+    return this;
+  }
+
+  warning(title, message) {
+    this.title = title;
+    this.message = message;
+    this.color = "yellow";
+    this.fontColor = "gray";
+    this.icon = "fas fa-exclamation-triangle";
+    return this;
+  }
+
+  addButtons(...buttonObjects) {
+    this.buttons = buttonObjects;
+    return this;
+  }
+
+  hide() {
+    let snackbar = document.querySelector("#" + this.id);
+    snackbar.classList.remove(
+      `${this.positionY === "top" ? "translate-y-36" : "-translate-y-36"}`
+    );
+    snackbar.classList.add(
+      `${this.positionY === "top" ? "-translate-y-36" : "translate-y-36"}`
+    );
+    setTimeout(() => {
+      snackbar.remove();
+    }, this.speed + 100);
+  }
+
+  show() {
+    this.shape = this.shape === "pill" ? "rounded-full" : "rounded";
+    let wrapper = document.createElement("DIV");
+    wrapper.classList = `z-10 fixed ease-in-out transform duration-${this.speed} -${this.positionY}-24 flex justify-${this.positionX} w-full`;
+    wrapper.innerHTML = `<div class="twsnackbar mx-4 text-${this.fontColor}-${this.fontTone} px-6 py-4 border-0 ${this.shape} relative mb-4 ${this.color} flex items-center justify-center">
+              <span class="text-xl inline-block mr-5">
+                <i class="${this.icon}"></i>
+              </span>
+              <span class="inline-block mr-8">
+                <b class="title">${this.title}</b> ${this.message}
+              </span>
+              <div id="buttons" class="flex justify-center items-center">
+              </div>
+            </div>`;
+    this.id = `tawilwind-snackbar-${numbers[Math.floor(Math.random() * Math.floor(11))]
+      }`;
+    wrapper.id = this.id;
+    let buttonWrapper = wrapper
+      .querySelector(".twsnackbar")
+      .querySelector("#buttons");
+    this.buttons.forEach((button) => {
+      let newButton = document.createElement("DIV");
+      newButton.classList = `cursor-pointer p-2 rounded flex justify-center items-center`;
+      newButton.innerHTML = `<b class="uppercase"> ${Object.keys(button)[0]
+        }</b>`;
+      newButton.onclick = Object.values(button)[0];
+      buttonWrapper.append(newButton);
+    });
+    document.body.prepend(wrapper);
+    let snackbar = document.querySelector("#" + this.id);
+    console.log(snackbar);
+    setTimeout(() => {
+      document
+        .querySelector("#" + this.id)
+        .classList.add(
+          `${this.positionY === "top" ? "translate-y-36" : "-translate-y-36"}`
+        );
+    }, 1);
+    setTimeout(() => {
+      let snackbar = document.querySelector("#" + this.id);
+      snackbar.classList.remove(
+        `${this.positionY === "top" ? "-translate-y-36" : "translate-y-36"}`
+      );
+      snackbar.classList.add(
+        `${this.positionY === "top" ? "translate-y-36" : "-translate-y-36"}`
+      );
+    }, this.duration);
+    setTimeout(() => {
+      snackbar.remove();
+    }, this.duration + this.speed + 100);
+  }
+}
+
+module.exports = Snackbar;
+
+
+/***/ }),
+
+/***/ "./node_modules/tailwind-toast/classes/Toast.js":
+/*!******************************************************!*\
+  !*** ./node_modules/tailwind-toast/classes/Toast.js ***!
+  \******************************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+const h = __webpack_require__(/*! ../utils/helpers */ "./node_modules/tailwind-toast/utils/helpers.js");
+const options = __webpack_require__(/*! ../utils/options.json */ "./node_modules/tailwind-toast/utils/options.json");
+const numbers = [
+  "one",
+  "two",
+  "three",
+  "four",
+  "five",
+  "six",
+  "seven",
+  "eight",
+  "nine",
+  "zero",
+  "ten",
+  "eleven",
+];
+
+class Toast {
+  constructor(
+    color,
+    icon,
+    duration,
+    positionX,
+    positionY,
+    fontColor,
+    fontTone,
+    shape,
+    speed
+  ) {
+    (this.color = color),
+      (this.icon = icon),
+      (this.duration = duration),
+      (this.positionX = positionX),
+      (this.positionY = positionY),
+      (this.fontColor = fontColor),
+      (this.fontTone = fontTone),
+      (this.shape = shape),
+      (this.speed = speed),
+      (this.buttons = []),
+      this.html,
+      this.id,
+      this.title,
+      this.message;
+  }
+
+  as(shape) {
+    this.shape = shape;
+    return this;
+  }
+
+  for(ms) {
+    this.duration = ms;
+    return this;
+  }
+
+  from(positionY, positionX = this.positionX) {
+    this.positionY = positionY;
+    this.positionX = positionX;
+    return this;
+  }
+
+  with(params) {
+    Object.keys(params).forEach((p) => {
+      let object = params;
+      if (options.includes(p)) {
+        this[p] = object[p];
+      }
+    });
+    return this;
+  }
+
+  default(title, message) {
+    this.title = title;
+    this.message = message;
+    return this;
+  }
+
+  danger(title, message) {
+    this.title = title;
+    this.message = message;
+    this.color = "red";
+    this.fontColor = "gray";
+    this.icon = "fas fa-hand-paper";
+    return this;
+  }
+
+  success(title, message) {
+    this.title = title;
+    this.message = message;
+    this.color = "green";
+    this.fontColor = "gray";
+    this.icon = "fas fa-check";
+    return this;
+  }
+
+  warning(title, message) {
+    this.title = title;
+    this.message = message;
+    this.color = "yellow";
+    this.fontColor = "gray";
+    this.icon = "fas fa-exclamation-triangle";
+    return this;
+  }
+
+  show() {
+    this.shape = this.shape === "pill" ? "rounded-full" : "rounded";
+    let wrapper = document.createElement("DIV");
+    wrapper.classList = `z-50 fixed ease-in-out transform duration-${this.speed} -${this.positionY}-24 flex justify-${this.positionX} w-full`;
+    wrapper.innerHTML = `<div class="twthis mx-4 text-${this.fontColor}-${this.fontTone} px-6 py-4 border-0 ${this.shape} relative mb-4 ${this.color}">
+      <span class="text-xl inline-block mr-5 align-middle">
+        <i class="${this.icon}"></i>
+      </span>
+      <span class="inline-block align-middle mr-8">
+        <b class="title">${this.title}</b> ${this.message}
+      </span>
+    </div>`;
+
+    this.id = `tawilwind-toast-${numbers[Math.floor(Math.random() * Math.floor(11))]
+      }`;
+    wrapper.id = this.id;
+    document.body.prepend(wrapper);
+    let toast = document.querySelector("#" + this.id);
+    setTimeout(() => {
+      toast.classList.add(
+        `${this.positionY === "top" ? "translate-y-36" : "-translate-y-36"}`
+      );
+    }, 1);
+    setTimeout(() => {
+      let toast = document.querySelector("#" + this.id);
+      toast.classList.remove(
+        `${this.positionY === "top" ? "-translate-y-36" : "translate-y-36"}`
+      );
+      toast.classList.add(
+        `${this.positionY === "top" ? "translate-y-36" : "-translate-y-36"}`
+      );
+    }, this.duration);
+    setTimeout(() => {
+      toast.remove();
+    }, this.duration + this.speed + 100);
+  }
+}
+
+module.exports = Toast;
+
+
+/***/ }),
+
+/***/ "./node_modules/tailwind-toast/twtoast.config.js":
+/*!*******************************************************!*\
+  !*** ./node_modules/tailwind-toast/twtoast.config.js ***!
+  \*******************************************************/
+/***/ (() => {
+
+{
+  //default values
+  modules: [
+    //custom modules
+  ]
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/tailwind-toast/twtoast.js":
+/*!************************************************!*\
+  !*** ./node_modules/tailwind-toast/twtoast.js ***!
+  \************************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+const config = __webpack_require__(/*! ./twtoast.config.js */ "./node_modules/tailwind-toast/twtoast.config.js");
+const Toast = __webpack_require__(/*! ./classes/Toast */ "./node_modules/tailwind-toast/classes/Toast.js");
+const Snackbar = __webpack_require__(/*! ./classes/Snackbar */ "./node_modules/tailwind-toast/classes/Snackbar.js");
+
+if (config.methods) {
+  config.methods.forEach((method) => {
+    eval(
+      "Toast.prototype." +
+      Object.keys(method)[0] +
+      " = " +
+      Object.values(method)
+    );
+    eval(
+      "Snackbar.prototype." +
+      Object.keys(method)[0] +
+      " = " +
+      Object.values(method)
+    );
+  });
+}
+
+module.exports = {
+  toast: () => {
+    return new Toast(
+      config.color ? config.color : "blue-500",
+      config.icon ? config.icon : "fas fa-bell",
+      config.duration ? config.duration : 3000,
+      config.positionX ? config.positionX : "center",
+      config.positionY ? config.positionY : "top",
+      config.fontColor ? config.fontColor : "grey",
+      config.fontTone ? config.fontTone : 100,
+      config.shape ? config.shape : "square",
+      config.speed ? config.speed : 500
+    );
+  },
+
+  snackbar: () => {
+    return new Snackbar(
+      config.color ? config.color : "blue-500",
+      config.icon ? config.icon : "fas fa-bell",
+      config.duration ? config.duration : 3000,
+      config.positionX ? config.positionX : "center",
+      config.positionY ? config.positionY : "top",
+      config.fontColor ? config.fontColor : "grey",
+      config.fontTone ? config.fontTone : 100,
+      config.shape ? config.shape : "square",
+      config.speed ? config.speed : 500
+    );
+  },
+};
+
+
+/***/ }),
+
+/***/ "./node_modules/tailwind-toast/utils/helpers.js":
+/*!******************************************************!*\
+  !*** ./node_modules/tailwind-toast/utils/helpers.js ***!
+  \******************************************************/
+/***/ ((module) => {
+
+function getFile(file) {
+  var x = new XMLHttpRequest();
+  x.open('GET', file, false);
+  x.send();
+  return x.responseText;
+}
+
+module.exports = {
+  getFile: getFile
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/tailwind-toast/utils/options.json":
+/*!********************************************************!*\
+  !*** ./node_modules/tailwind-toast/utils/options.json ***!
+  \********************************************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = JSON.parse('["color","title","message","icon","duration","positionX","positionY","fontColor","fontTone","shape","speed"]');
 
 /***/ })
 

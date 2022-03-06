@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\DeleteWishRequest;
 use App\Http\Requests\WishActionRequest;
 use App\Http\Requests\WishRequest;
 use App\View\Components\Alert;
@@ -20,7 +21,7 @@ class WishController extends Controller
 
         return view('wishes/index', [
             'title' => $user->name,
-            'wishes' => $user->wishedItems()->whereNull('deleted_at')->get(),
+            'wishes' => $user->wishedItems()->get(),
         ]);
     }
 
@@ -47,7 +48,7 @@ class WishController extends Controller
 
         return redirect()
             ->route('wish-list', ['name' => $user->name])
-            ->with('alert', ['"'.$request->input('gift').'" is toegevoegd' => Alert::SUCCESS]);
+            ->with('alert', ['"'.$request->input('gift').'" is toegevoegd.' => Alert::SUCCESS]);
     }
 
     /**
@@ -77,9 +78,9 @@ class WishController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy($id)
+    public function destroy(DeleteWishRequest $request, $id)
     {
-        //
+        Wish::destroy($id);
     }
 
     public function claim(WishActionRequest $request)
