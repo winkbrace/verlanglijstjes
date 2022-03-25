@@ -33,9 +33,4 @@ Note: after running that script I manually updated avatars for people who got an
 
 # TODO
 
-3. Add errors layout and errors/403 and 404 pages
-
-# Deployment
-
-1. On first deploy remember to set APP_BASE_PATH, APP_URL, SESSION_DOMAIN, etc in the env file
-2. 
+1. Add errors layout and errors/403 and 404 pages
