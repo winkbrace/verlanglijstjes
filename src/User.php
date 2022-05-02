@@ -53,4 +53,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Wish::class, 'claimed_by');
     }
+
+    public function avatarUrl(): string
+    {
+        return str_replace('/var/www/html/public', '', $this->avatar);
+    }
 }
