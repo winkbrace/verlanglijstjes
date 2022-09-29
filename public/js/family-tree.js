@@ -186,12 +186,12 @@ const config = {
         },
         HTMLclass: 'shadow bg-pink-400',
     },
-    frummelien = {
+    vera = {
         parent: hugo,
-        text: { name: 'Frummelien' },
-        image: "/img/avatar-frummelien.svg",
+        text: { name: 'Vera' },
+        image: "/img/avatar-vera.svg",
         link: {
-            href: "/list/Frummelien"
+            href: "/list/Vera"
         },
         HTMLclass: 'shadow bg-pink-400',
     },
@@ -205,7 +205,7 @@ const config = {
         gezin3, hugo, lieselot,
         thijs, bob, daantje, sepp,
         noortje, abel, elena,
-        alissa, frummelien,
+        alissa, vera,
     ];
 
 
