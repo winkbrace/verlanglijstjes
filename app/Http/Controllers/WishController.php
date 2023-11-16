@@ -125,10 +125,10 @@ class WishController extends Controller
 
     private function fetchLinkPreview(int $id, string $url): void
     {
-//        try {
+        try {
             dispatch(new FetchLinkPreview($id, $url));
-//        } catch (\Throwable) {
-//            // No problem
-//        }
+        } catch (\Throwable) {
+            // No problem
+        }
     }
 }
