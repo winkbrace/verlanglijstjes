@@ -8,6 +8,7 @@ use App\Http\Requests\WishActionRequest;
 use App\Http\Requests\AddWishRequest;
 use App\Jobs\FetchLinkPreview;
 use App\View\Components\Alert;
+use App\View\Components\LinkPreview;
 use Verlanglijstjes\User;
 use Verlanglijstjes\Wish;
 
@@ -124,10 +125,10 @@ class WishController extends Controller
 
     private function fetchLinkPreview(int $id, string $url): void
     {
-        try {
+//        try {
             dispatch(new FetchLinkPreview($id, $url));
-        } catch (\Throwable) {
-            // No problem
-        }
+//        } catch (\Throwable) {
+//            // No problem
+//        }
     }
 }

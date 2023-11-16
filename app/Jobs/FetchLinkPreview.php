@@ -18,8 +18,9 @@ class FetchLinkPreview
     public function handle(Embed $embed)
     {
         if ($this->isImageUrl()) {
-            return LinkPreview::create([
-                'wish_id' => $this->wishId,
+            return LinkPreview::updateOrCreate([
+                'wish_id' => $this->wishId
+            ], [
                 'link' => $this->url,
                 'image' => $this->url,
             ]);
@@ -27,8 +28,9 @@ class FetchLinkPreview
 
         $info = $embed->get($this->url);
 
-        return LinkPreview::create([
-            'wish_id' => $this->wishId,
+        return LinkPreview::updateOrCreate([
+            'wish_id' => $this->wishId
+        ], [
             'title' => $info->title,
             'description' => $info->description,
             'link' => $this->url,
@@ -39,6 +41,6 @@ class FetchLinkPreview
     private function isImageUrl()
     {
         // Good enough
-        return str_ends_with($this->url, 'jpg') || str_ends_with($this->url, 'png');
+        return str_ends_with($this->url, 'jpg') || str_ends_with($this->url, 'png') || str_ends_with($this->url, 'svg');
     }
 }
