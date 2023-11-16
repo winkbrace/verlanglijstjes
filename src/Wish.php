@@ -56,4 +56,9 @@ class Wish extends Model
     {
         return $this->hasOne(LinkPreview::class);
     }
+
+    public function isClaimedByAnother(): bool
+    {
+        return $this->claimed_by !== null && ! userId()->equals($this->claimed_by);
+    }
 }
