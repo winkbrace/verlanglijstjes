@@ -34,3 +34,6 @@ Note: after running that script I manually updated avatars for people who got an
 # TODO
 
 1. Add errors layout and errors/403 and 404 pages
+2. Nieuw knop ook bovenaan bij lijstje naast naam
+3. Niet alle links werken (ici paris)
+4. https ssl certificate!
