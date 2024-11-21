@@ -25,9 +25,9 @@ Route::middleware('auth')->group(function() {
     Route::name('store-wish')->post('/wish/store', [WishController::class, 'store']);
     Route::name('edit-wish')->get('/wish/edit/{id}', [WishController::class, 'edit'])->whereNumber('id');
     Route::name('update-wish')->post('/wish/update/{id}', [WishController::class, 'update'])->whereNumber('id');
-
-    Route::name('letters')->get('/letters', [HomeController::class, 'letters']);
 });
+
+Route::name('letters')->get('/letters', [HomeController::class, 'letters']);
 
 Route::name('mail-reminder')->get('/mail/reminder', [MailController::class, 'reminder']);
 
