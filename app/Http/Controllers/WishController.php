@@ -19,7 +19,7 @@ class WishController extends Controller
      */
     public function index(string $name)
     {
-        $user = User::where('name', $name)->first();
+        $user = User::where('name', $name)->firstOrfail();
 
         return view('wishes/index', [
             'title' => $user->name,
