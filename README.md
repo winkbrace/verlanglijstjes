@@ -12,7 +12,7 @@ Then view on http://localhost
 
 # Populating new data
 
-With the latest rebuild, there is a little more data to fetch. This is designed to run on development once.
+Just download from production.
 
 ## link previews
 
@@ -30,6 +30,9 @@ sail artisan fetch:avatars
 ```
 
 Note: after running that script I manually updated avatars for people who got an ugly one. Very easy, actually.
+
+# Google OAuth 2.0
+Guest users can login using their Google account. To configure this, visit [the Google API Console](https://console.cloud.google.com/auth/clients?authuser=1&project=verlanglijstjes&supportedpurview=project).
 
 # TODO
 
