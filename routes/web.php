@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MailController;
+use App\Http\Controllers\GoogleOauthController;
 use App\Http\Controllers\WishController;
 use Illuminate\Support\Facades\Route;
 
@@ -30,5 +31,8 @@ Route::middleware('auth')->group(function() {
 Route::name('letters')->get('/letters', [HomeController::class, 'letters']);
 
 Route::name('mail-reminder')->get('/mail/reminder', [MailController::class, 'reminder']);
+
+Route::name('oauth.google.redirect')->get('/oauth/google/redirect', [GoogleOauthController::class, 'redirect']);
+Route::name('oauth.google.callback')->get('/oauth/google/callback', [GoogleOauthController::class, 'callback']);
 
 require __DIR__.'/auth.php';

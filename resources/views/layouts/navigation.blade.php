@@ -20,7 +20,7 @@
                     </x-nav-link>
 
                     @auth
-                    @if (user()->name !== 'Gast')
+                    @if (! user()->isGuest())
                         <x-nav-link :href="route('wish-list', ['name' => user()->name])" :active="request()->routeIs('wish-list') && user()->name == request()->route('name')">
                             <svg class="h-6 pb-1 mr-1 stroke-current fill-current" viewBox="0 0 16 16">
                                 <path d="M11 8a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>

@@ -2,6 +2,7 @@
 
 namespace Verlanglijstjes;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -19,20 +20,14 @@ use Verlanglijstjes\Db\Casts\UserIdCast;
  * @property int position
  * @property string avatar
  * @property string chocolate_preference
+ *
+ * @mixin Builder
  */
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
-    protected $fillable = [
-        'name',
-        'email',
-        'password',
-        'generation',
-        'position',
-        'avatar',
-        'chocolate_preference',
-    ];
+    protected $guarded = ['id'];
 
     protected $hidden = [
         'password',
@@ -57,5 +52,10 @@ class User extends Authenticatable
     public function avatarUrl(): string
     {
         return str_replace('/var/www/html/public', '', $this->avatar);
+    }
+
+    public function isGuest(): bool
+    {
+        return $this->name === 'Gast' || $this->google_id !== null;
     }
 }
