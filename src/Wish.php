@@ -6,8 +6,10 @@ use Carbon\CarbonImmutable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\Auth;
 use Verlanglijstjes\Db\Casts\UserIdCast;
 use Verlanglijstjes\Db\Casts\WishIdCast;
+use Verlanglijstjes\Exceptions\UserNotLoggedIn;
 
 /**
  * This Eloquent Model represents a wish of a user
@@ -59,6 +61,10 @@ class Wish extends Model
 
     public function isClaimedByAnother(): bool
     {
-        return $this->claimed_by !== null && ! userId()->equals($this->claimed_by);
+        if ($this->claimed_by === null || ! Auth::check()) {
+            return false;
+        }
+
+        return ! userId()->equals($this->claimed_by);
     }
 }
