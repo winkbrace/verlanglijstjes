@@ -14,15 +14,13 @@ use Verlanglijstjes\Db\Casts\WishIdCast;
  * @property WishId wish_id
  * @property string title
  * @property string description
- * @property string link
- * @property string image
+ * @property ?string link
+ * @property ?string image
  * @property CarbonImmutable updated_at
  * @property CarbonImmutable deleted_at
  */
 class LinkPreview extends Model
 {
-    use HasFactory;
-
     protected $guarded = ['id'];
 
     protected $casts = [

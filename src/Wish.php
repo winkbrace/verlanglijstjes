@@ -23,6 +23,7 @@ use Verlanglijstjes\Exceptions\UserNotLoggedIn;
  * @property CarbonImmutable created_at
  * @property CarbonImmutable updated_at
  * @property CarbonImmutable deleted_at
+ * @property ?LinkPreview linkPreview
  */
 class Wish extends Model
 {

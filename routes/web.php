@@ -5,6 +5,7 @@ use App\Http\Controllers\MailController;
 use App\Http\Controllers\GoogleOauthController;
 use App\Http\Controllers\WishController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Artisan;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,5 +35,18 @@ Route::name('mail-reminder')->get('/mail/reminder', [MailController::class, 'rem
 
 Route::name('oauth.google.redirect')->get('/oauth/google/redirect', [GoogleOauthController::class, 'redirect']);
 Route::name('oauth.google.callback')->get('/oauth/google/callback', [GoogleOauthController::class, 'callback']);
+
+// Route to run the FetchLinkPreviews command with a 20-minute execution time limit
+Route::get('/refresh-link-previews', function () {
+    // Ensure PHP has enough time for long-running command
+    @ini_set('max_execution_time', '1200');
+    if (function_exists('set_time_limit')) {
+        @set_time_limit(1200);
+    }
+
+    Artisan::call('fetch:link-previews');
+
+    return Artisan::output();
+});
 
 require __DIR__.'/auth.php';

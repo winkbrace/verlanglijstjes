@@ -17,7 +17,7 @@ class FetchLinkPreviews extends Command
             ->whereNotNull('link')
             ->where('link', '!=', '')
             ->get()
-            ->filter(fn (Wish $wish) => empty($wish->linkPreview))
+//            ->filter(fn (Wish $wish) => empty($wish->linkPreview))
             ->pluck('link', 'id');
 
         $success = $failed = 0;
