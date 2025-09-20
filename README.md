@@ -18,7 +18,7 @@ Just download from production.
 
 To fetch link previews of stored wish links, run:
 ```shell
-sail artisan fetch:link-previews 
+sail artisan fetch:link-previews
 ```
 
 ## avatars

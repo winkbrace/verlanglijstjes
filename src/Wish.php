@@ -59,6 +59,15 @@ class Wish extends Model
         return $this->hasOne(LinkPreview::class);
     }
 
+    public function isOwnedByCurrentUser(): bool
+    {
+        if (! Auth::check()) {
+            return false;
+        }
+
+        return userId()->equals($this->user_id);
+    }
+
     public function isClaimedByAnother(): bool
     {
         if ($this->claimed_by === null || ! Auth::check()) {
