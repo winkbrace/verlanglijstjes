@@ -26,11 +26,6 @@ Route::middleware(['auth', 'not-guest'])->group(function() {
     Route::name('store-wish')->post('/wish/store', [WishController::class, 'store']);
     Route::name('edit-wish')->get('/wish/edit/{id}', [WishController::class, 'edit'])->whereNumber('id');
     Route::name('update-wish')->post('/wish/update/{id}', [WishController::class, 'update'])->whereNumber('id');
-
-//    Route::name('add-idea')->get('/idea/add', [IdeaController::class, 'create']);
-//    Route::name('store-idea')->post('/idea/store', [IdeaController::class, 'store']);
-//    Route::name('edit-idea')->get('/idea/edit/{id}', [IdeaController::class, 'edit'])->whereNumber('id');
-//    Route::name('update-idea')->post('/idea/update/{id}', [IdeaController::class, 'update'])->whereNumber('id');
 });
 
 Route::name('letters')->get('/letters', [HomeController::class, 'letters']);

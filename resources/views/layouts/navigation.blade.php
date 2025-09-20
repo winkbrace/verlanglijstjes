@@ -43,7 +43,6 @@
                                 {{ __('Sinterklaasletters') }}
                             </x-nav-link>
                         @endif
-
                     @endif
                     @endauth
                 </div>

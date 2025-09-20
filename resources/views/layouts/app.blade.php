@@ -34,7 +34,7 @@
 
             <!-- Page Content -->
             <main class="flex flex-grow justify-center">
-                <section class="antialiased bg-gray-100 text-gray-600 p-0 md:p-4">
+                <section class="antialiased bg-gray-100 text-gray-600 p-1 md:p-4">
                     {{ $slot }}
                 </section>
             </main>
