@@ -54,6 +54,17 @@ class User extends Authenticatable
         return str_replace('/var/www/html/public', '', $this->avatar);
     }
 
+    /**
+     * To guarantee unique names, we add the email address when people log in via google: "name (email)")
+     * That makes the username too long for the app, so we show only the name. Note that google users are always guests,
+     * so this is only required in the navigation bar.
+     */
+    public function displayName(): string
+    {
+        // show name but remove anything between brackets
+        return trim(preg_replace('/\([^)]+\)/', '', $this->name));
+    }
+
     public function isGuest(): bool
     {
         return $this->name === 'Gast' || $this->google_id !== null;

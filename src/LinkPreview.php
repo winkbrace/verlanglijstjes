@@ -3,7 +3,6 @@
 namespace Verlanglijstjes;
 
 use Carbon\CarbonImmutable;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Verlanglijstjes\Db\Casts\WishIdCast;
 
@@ -18,6 +17,8 @@ use Verlanglijstjes\Db\Casts\WishIdCast;
  * @property ?string image
  * @property CarbonImmutable updated_at
  * @property CarbonImmutable deleted_at
+ *
+ * @mixin \Illuminate\Database\Eloquent\Builder
  */
 class LinkPreview extends Model
 {

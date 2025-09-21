@@ -37,5 +37,5 @@ Guest users can login using their Google account. To configure this, visit [the 
 # TODO
 
 1. Add errors layout and errors/403 and 404 pages
-3. Bij andermans lijstje wordt die knop "💡 Idee" (maar wat te doen met gelijke wachtwoord? Dit vraagt teveel discipline)
-4. Niet alle links werken (ici paris)
+2. Niet alle link preview data wordt goed opgehaald door embed/embed op productie, maar wel lokaal... :/
+   - voorbeeld: https://www.bol.com/nl/nl/p/kookbijbels-34-eenpansbijbel/9300000154345734/?referrer=socialshare_pdp_androidapp
