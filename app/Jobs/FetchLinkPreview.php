@@ -30,12 +30,13 @@ class FetchLinkPreview
         }
 
         $info = $embed->get($this->url);
+
         return LinkPreview::updateOrCreate([
             'wish_id' => $this->wishId
         ], [
             'title' => $info->title,
             'description' => $info->description,
-            'link' => $this->extractLink($info),
+            'link' => $this->url,
             'image' => $this->extractImageUrl($info),
         ]);
     }
@@ -62,15 +63,6 @@ class FetchLinkPreview
 
         // string or null
         return $info->image;
-    }
-
-    private function extractLink(Extractor $info): string
-    {
-        if ($info->image instanceof UriInterface) {
-            return $this->buildUrl($info->image);
-        }
-
-        return $this->url;
     }
 
     private function buildUrl(UriInterface $uri): string

@@ -36,17 +36,17 @@ Route::name('mail-reminder')->get('/mail/reminder', [MailController::class, 'rem
 Route::name('oauth.google.redirect')->get('/oauth/google/redirect', [GoogleOauthController::class, 'redirect']);
 Route::name('oauth.google.callback')->get('/oauth/google/callback', [GoogleOauthController::class, 'callback']);
 
-// Route to run the FetchLinkPreviews command with a 20-minute execution time limit
+require __DIR__.'/auth.php';
+
+// Ververst de link previews van alle actieve wensen
 Route::get('/refresh-link-previews', function () {
-    // Ensure PHP has enough time for long-running command
-    @ini_set('max_execution_time', '1200');
+    // Ensure PHP has enough time to run the command
+    @ini_set('max_execution_time', '600');
     if (function_exists('set_time_limit')) {
-        @set_time_limit(1200);
+        @set_time_limit(600);
     }
 
     Artisan::call('fetch:link-previews');
 
-    return Artisan::output();
+    return '<pre>'.Artisan::output().'</pre>';
 });
-
-require __DIR__.'/auth.php';

@@ -9,7 +9,7 @@ use Verlanglijstjes\Wish;
 class FetchLinkPreviews extends Command
 {
     protected $signature = 'fetch:link-previews';
-    protected $description = 'Fetch link previews for all active wishes with a link (dev only)';
+    protected $description = 'Fetch link previews for all active wishes with a link';
 
     public function handle()
     {
@@ -17,7 +17,6 @@ class FetchLinkPreviews extends Command
             ->whereNotNull('link')
             ->where('link', '!=', '')
             ->get()
-//            ->filter(fn (Wish $wish) => empty($wish->linkPreview))
             ->pluck('link', 'id');
 
         $success = $failed = 0;
