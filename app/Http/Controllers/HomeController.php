@@ -18,6 +18,7 @@ final class HomeController extends Controller
     {
         $users = User::query()
             ->where('name', '!=', 'Gast')
+            ->whereNull('google_id')
             ->orderBy('position')
             ->get();
 
