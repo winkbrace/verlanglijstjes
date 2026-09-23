@@ -19,7 +19,7 @@ class WishTest extends TestCase
         $this->seed(WishesSeeder::class);
     }
 
-    public function test_it_casts_to_id_objects()
+    public function test_it_casts_to_id_objects(): void
     {
         /** @var Wish $wish */
         $wish = Wish::find(1);
