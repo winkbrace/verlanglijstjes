@@ -27,6 +27,15 @@ class PasswordResetTest extends TestCase
         $this->requestResetPasswordNotification($user);
     }
 
+    public function test_reset_password_mail_has_a_dutch_subject(): void
+    {
+        $user = User::factory()->create();
+
+        $notification = $this->requestResetPasswordNotification($user);
+
+        $this->assertSame('Wachtwoordherstel notificatie', $notification->toMail($user)->subject);
+    }
+
     public function test_reset_password_screen_can_be_rendered(): void
     {
         $user = User::factory()->create();
