@@ -25,7 +25,7 @@ const config = {
         link: {
             href: "/list/GJ"
         },
-        HTMLclass: 'shadow bg-sky-500',
+        HTMLclass: 'shadow-sm bg-sky-500',
     },
     gerda = {
         parent: root,
@@ -34,7 +34,7 @@ const config = {
         link: {
             href: "/list/Gerda"
         },
-        HTMLclass: 'partner shadow bg-rose-400',
+        HTMLclass: 'partner shadow-sm bg-rose-400',
     },
 
     gezin1 = {
@@ -57,7 +57,7 @@ const config = {
         link: {
             href: "/list/Bas"
         },
-        HTMLclass: 'shadow bg-green-500',
+        HTMLclass: 'shadow-sm bg-green-500',
         stackChildren: true,
     },
     dorien = {
@@ -67,7 +67,7 @@ const config = {
         link: {
             href: "/list/Dorien"
         },
-        HTMLclass: 'partner shadow bg-fuchsia-400',
+        HTMLclass: 'partner shadow-sm bg-fuchsia-400',
         stackChildren: true,
     },
     daan = {
@@ -77,7 +77,7 @@ const config = {
         link: {
             href: "/list/Daan"
         },
-        HTMLclass: 'shadow bg-green-500',
+        HTMLclass: 'shadow-sm bg-green-500',
         stackChildren: true,
     },
     leanne = {
@@ -87,7 +87,7 @@ const config = {
         link: {
             href: "/list/Leanne"
         },
-        HTMLclass: 'partner shadow bg-fuchsia-400',
+        HTMLclass: 'partner shadow-sm bg-fuchsia-400',
     },
     hugo = {
         parent: gezin3,
@@ -96,7 +96,7 @@ const config = {
         link: {
             href: "/list/Hugo"
         },
-        HTMLclass: 'shadow bg-green-500',
+        HTMLclass: 'shadow-sm bg-green-500',
         stackChildren: true,
     },
     lieselot = {
@@ -106,7 +106,7 @@ const config = {
         link: {
             href: "/list/Lieselot"
         },
-        HTMLclass: 'partner shadow bg-fuchsia-400',
+        HTMLclass: 'partner shadow-sm bg-fuchsia-400',
     },
 
     // Driehuis
@@ -117,7 +117,7 @@ const config = {
         link: {
             href: "/list/Thijs"
         },
-        HTMLclass: 'shadow bg-emerald-500',
+        HTMLclass: 'shadow-sm bg-emerald-500',
     },
     bob = {
         parent: bas,
@@ -126,7 +126,7 @@ const config = {
         link: {
             href: "/list/Bob"
         },
-        HTMLclass: 'shadow bg-emerald-500',
+        HTMLclass: 'shadow-sm bg-emerald-500',
     },
     daantje = {
         parent: bas,
@@ -135,7 +135,7 @@ const config = {
         link: {
             href: "/list/Daantje"
         },
-        HTMLclass: 'shadow bg-emerald-500',
+        HTMLclass: 'shadow-sm bg-emerald-500',
     },
     sepp = {
         parent: bas,
@@ -144,7 +144,7 @@ const config = {
         link: {
             href: "/list/Sepp"
         },
-        HTMLclass: 'shadow bg-cyan-400',
+        HTMLclass: 'shadow-sm bg-cyan-400',
     },
 
     // Den Haag
@@ -155,7 +155,7 @@ const config = {
         link: {
             href: "/list/Noortje"
         },
-        HTMLclass: 'shadow bg-pink-400',
+        HTMLclass: 'shadow-sm bg-pink-400',
     },
     abel = {
         parent: daan,
@@ -164,7 +164,7 @@ const config = {
         link: {
             href: "/list/Abel"
         },
-        HTMLclass: 'shadow bg-blue-500',
+        HTMLclass: 'shadow-sm bg-blue-500',
     },
     elena = {
         parent: daan,
@@ -173,7 +173,7 @@ const config = {
         link: {
             href: "/list/Elena"
         },
-        HTMLclass: 'shadow bg-pink-400',
+        HTMLclass: 'shadow-sm bg-pink-400',
     },
 
     // Vlaardingen
@@ -184,7 +184,7 @@ const config = {
         link: {
             href: "/list/Alissa"
         },
-        HTMLclass: 'shadow bg-pink-400',
+        HTMLclass: 'shadow-sm bg-pink-400',
     },
     vera = {
         parent: hugo,
@@ -193,7 +193,7 @@ const config = {
         link: {
             href: "/list/Vera"
         },
-        HTMLclass: 'shadow bg-pink-400',
+        HTMLclass: 'shadow-sm bg-pink-400',
     },
 
 

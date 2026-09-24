@@ -27,7 +27,7 @@ class WishButton extends Component
     public function color(): string
     {
         if ($this->claimedByAnother()) {
-            return 'warmgray';
+            return 'stone';
         }
 
         return $this->type === 'delete' ? 'red' : 'yellow';

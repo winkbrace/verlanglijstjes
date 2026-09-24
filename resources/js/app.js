@@ -1,8 +1,7 @@
-require('./bootstrap');
-
-const { toast } = require('tailwind-toast');
-
+import './bootstrap';
+import { toast } from 'tailwind-toast';
 import Alpine from 'alpinejs';
+
 window.Alpine = Alpine;
 Alpine.start();
 
@@ -34,6 +33,7 @@ window.clickWishButton = function (type, wishId) {
                     .danger('Oeps!', 'Deleten is niet gelukt.')
                     .with({
                         color: 'bg-red-400',
+                        icon: '',
                         positionY: 'top',
                         positionX: 'end',
                         shape: 'pill',

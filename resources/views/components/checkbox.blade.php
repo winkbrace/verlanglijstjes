@@ -1,6 +1,6 @@
 <div class="flex items-center mb-1">
     {{-- This is an svg that looks like a checkbox, but there is no checkbox here --}}
-    <div class="bg-white border-2 rounded-md border-amber-400 w-5 h-5 flex flex-shrink-0 justify-center items-center focus-within:border-amber-500 md:mr-2">
+    <div class="bg-white border-2 rounded-md border-amber-400 w-5 h-5 flex shrink-0 justify-center items-center focus-within:border-amber-500 md:mr-2">
         {{-- the "checkbox" outline --}}
         <svg class="fill-current hidden w-3 h-3 text-amber-600 pointer-events-none" viewBox="0 0 17 12"></svg>
         {{-- the claim check mark --}}

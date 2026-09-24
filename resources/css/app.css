@@ -1,6 +1,36 @@
-@import 'tailwindcss/base';
-@import 'tailwindcss/components';
-@import 'tailwindcss/utilities';
+@import 'tailwindcss';
+@plugin '@tailwindcss/forms';
+
+/* class names used outside Blade views */
+@source '../js';
+@source '../../public/js/family-tree.js';
+@source '../../node_modules/tailwind-toast/twtoast.js';
+
+/* colors of the button, anchor, alert and wish-button components are passed in at runtime */
+@source inline('{bg,hover:bg,active:bg,focus:border,ring}-{red,yellow,green,teal,stone}-{300,400,500,700,900}');
+
+/* tailwind-toast builds these from its config at runtime */
+@source inline('text-gray-100 -top-24');
+
+@theme {
+    --font-sans: 'Hi Melody', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+}
+
+/* keep the Tailwind 2 defaults that Tailwind 4 changed */
+@layer base {
+    *,
+    ::after,
+    ::before,
+    ::backdrop,
+    ::file-selector-button {
+        border-color: var(--color-gray-200, currentColor);
+    }
+
+    button:not(:disabled),
+    [role='button']:not(:disabled) {
+        cursor: pointer;
+    }
+}
 
 html {
     font-size: 24px;
@@ -20,6 +50,14 @@ input.claim-wish:checked + div {
 }
 input.claim-wish:checked + div svg {
   @apply block;
+}
+
+/* tailwind-toast always renders an icon element, even without an icon, so drop it and its spacing */
+.twthis > span:first-child {
+    display: none;
+}
+.twthis > span:last-child {
+    margin-right: 0;
 }
 
 .wish-button img {

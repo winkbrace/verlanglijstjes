@@ -12,17 +12,12 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Hi+Melody&display=swap" rel="stylesheet">
 
-        <!-- Styles -->
-        <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+        @vite(['resources/css/app.css', 'resources/js/app.js'])
 
         @if(request()->routeIs('home'))
-        <link rel="stylesheet" href="{{ asset('css/treant.css') }}">
-        <script src="/js/treant.js"></script>
+        @vite(['resources/css/treant.css', 'resources/js/treant.js'])
         <script src="/js/family-tree.js"></script>
         @endif
-
-        <!-- Scripts -->
-        <script src="{{ asset('js/app.js') }}" defer></script>
     </head>
     <body class="font-sans antialiased bg-gray-100">
         <div class="flex flex-col h-screen bg-gray-100">
@@ -33,7 +28,7 @@
             @endif
 
             <!-- Page Content -->
-            <main class="flex flex-grow justify-center">
+            <main class="flex grow justify-center">
                 <section class="antialiased bg-gray-100 text-gray-600 p-1 md:p-4">
                     {{ $slot }}
                 </section>
