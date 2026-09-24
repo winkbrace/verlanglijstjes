@@ -10,6 +10,8 @@ sail up
 
 Then view on http://localhost (also reachable from Docker Desktop)
 
+Front-end assets are built with Vite (Node `^20.19` or `>=22.12`). Run `npm run dev` while developing, or `npm run build` once. Without either, pages fail with a missing Vite manifest error.
+
 # Populating new data
 
 Just download from production.
@@ -37,6 +39,7 @@ Guest users can login using their Google account. To configure this, visit [the 
 # Deploying to shared host
 
 - Build `vendor/` for production with `composer install --no-dev --optimize-autoloader` and upload it completely. Run `composer install` afterwards to get the dev dependencies back locally.
+- Build the front-end with `npm ci && npm run build` and upload `public/build/` completely. It is not in git.
 - Uploading doesn't delete files that were removed from the repository. Delete them on the server too, or replace `app/`, `bootstrap/`, `config/`, `lang/`, `resources/` and `routes/` as a whole. A leftover `resources/lang` directory makes Laravel ignore `lang/`, including the Dutch translations.
 - After uploading code changes, delete `bootstrap/cache/packages.php` and `bootstrap/cache/services.php` (and `config.php`, see below). Laravel regenerates them on the next request.
 - Don't forget to upload the hidden dotfiles too (`.env` and `.htaccess`) — some FTP clients/file managers hide these by default.
@@ -64,6 +67,13 @@ Guest users can login using their Google account. To configure this, visit [the 
 4. Upload a fresh `vendor/`, then clear `bootstrap/cache/*.php`.
 5. There are no new migrations. Sessions, cookies and `APP_KEY` are unchanged, so logged-in users should stay logged in.
 6. Smoke test: home, a wish list, login, Google login, claiming and unclaiming a wish, and `/refresh-link-previews`.
+
+## One-time: switching production from Laravel Mix to Vite
+
+1. Run `npm ci && npm run build` locally and upload `public/build/`.
+2. Upload the changed `resources/views/`, `app/View/Components/WishButton.php` and `public/js/family-tree.js`.
+3. Delete the old Mix output on the server: `public/css/`, `public/js/app.js`, `public/js/treant.js` and `public/mix-manifest.json`. Keep `public/js/family-tree.js`.
+4. Smoke test: the family tree on the home page, the navigation dropdown, claiming a wish, and the error toast when deleting fails.
 
 # TODO
 
