@@ -93,4 +93,13 @@ class WebRoutesTest extends TestCase
         $this->assertInstanceOf(\InvalidArgumentException::class, $response->exception);
         $this->assertSame('View [errors.403] not found.', $response->exception->getMessage());
     }
+
+    public function test_input_is_trimmed_except_passwords(): void
+    {
+        Route::middleware('web')->post('/_test/trim', fn () => request()->only('name', 'password', 'password_confirmation'));
+
+        $this->withoutMiddleware(\Illuminate\Foundation\Http\Middleware\PreventRequestForgery::class)
+            ->post('/_test/trim', ['name' => '  Bas  ', 'password' => '  geheim  ', 'password_confirmation' => '  geheim  '])
+            ->assertExactJson(['name' => 'Bas', 'password' => '  geheim  ', 'password_confirmation' => '  geheim  ']);
+    }
 }
