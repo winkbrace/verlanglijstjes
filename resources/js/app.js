@@ -1,8 +1,7 @@
-require('./bootstrap');
-
-const { toast } = require('tailwind-toast');
-
+import './bootstrap';
+import { toast } from 'tailwind-toast';
 import Alpine from 'alpinejs';
+
 window.Alpine = Alpine;
 Alpine.start();
 
