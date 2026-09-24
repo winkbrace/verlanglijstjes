@@ -39,7 +39,15 @@ Guest users can login using their Google account. To configure this, visit [the 
 # Deploying to shared host
 
 - Build `vendor/` for production with `composer install --no-dev --optimize-autoloader` and upload it completely. Run `composer install` afterwards to get the dev dependencies back locally.
-- Build the front-end with `npm ci && npm run build` and upload `public/build/` completely. It is not in git.
+- Build the front-end locally and upload `public/build/` completely. It is not in git. It needs Node `^20.19` or `>=22.12`:
+  ```shell
+  node -v
+  npm ci
+  npm run build
+  ```
+  Every build gets new hashed filenames, so replace `public/build/` on the server as a whole instead of adding to it. 
+  Stop `npm run dev` first and make sure no `public/hot` file ends up on the server: while it exists, Laravel loads the 
+  assets from the Vite dev server instead of `public/build/`.
 - Uploading doesn't delete files that were removed from the repository. Delete them on the server too, or replace `app/`, `bootstrap/`, `config/`, `lang/`, `resources/` and `routes/` as a whole. A leftover `resources/lang` directory makes Laravel ignore `lang/`, including the Dutch translations.
 - After uploading code changes, delete `bootstrap/cache/packages.php` and `bootstrap/cache/services.php` (and `config.php`, see below). Laravel regenerates them on the next request.
 - Don't forget to upload the hidden dotfiles too (`.env` and `.htaccess`) — some FTP clients/file managers hide these by default.
