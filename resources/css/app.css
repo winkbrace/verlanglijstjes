@@ -52,6 +52,14 @@ input.claim-wish:checked + div svg {
   @apply block;
 }
 
+/* tailwind-toast: we don't load its Font Awesome icons, so drop the empty icon and its spacing */
+.twthis > span:first-child {
+    display: none;
+}
+.twthis > span:last-child {
+    margin-right: 0;
+}
+
 .wish-button img {
     height: 1rem;
     color: white;
