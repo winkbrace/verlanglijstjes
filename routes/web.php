@@ -7,17 +7,6 @@ use App\Http\Controllers\WishController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Artisan;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-
 Route::name('home')->get('/', [HomeController::class, 'index']);
 
 Route::name('wish-list')->get('/list/{name}', [WishController::class, 'index']);
