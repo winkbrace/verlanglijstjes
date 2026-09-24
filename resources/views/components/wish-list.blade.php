@@ -1,5 +1,5 @@
 <div class="flex flex-col justify-around h-full">
-    <div class="w-full max-w-2xl mx-auto bg-white shadow-lg rounded border border-yellow-300">
+    <div class="w-full max-w-2xl mx-auto bg-white shadow-lg rounded-sm border border-yellow-300">
 
         <header class="px-5 py-3 border-b border-yellow-300 flex justify-between">
             <h2 class="font-semibold text-gray-800">{{ $title }}</h2>
@@ -22,7 +22,7 @@
             @foreach ($wishes as $wish)
             <li class="grid grid-cols-12 md:grid-cols-8 gap-0 md:gap-4 py-1 pl-2 w-full">
                 @if ($wish->isClaimedByAnother() && ! $wish->isOwnedByCurrentUser())
-                    <div class="col-span-12 md:col-span-6 row-span-2 md:row-span-1 flex items-center bg-warmgray-400 rounded-full">
+                    <div class="col-span-12 md:col-span-6 row-span-2 md:row-span-1 flex items-center bg-stone-400 rounded-full">
                         <span class="font-bold text-white pt-1 px-3">Gereserveerd</span>
                     </div>
                 @else

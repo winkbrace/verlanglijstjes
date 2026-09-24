@@ -16,7 +16,7 @@
         </div>
 
         <div class="flex items-center justify-end mt-4">
-            <x-anchor href="{{ url()->previous('/') }}" color="warmgray">{{ __('Terug') }}</x-anchor>
+            <x-anchor href="{{ url()->previous('/') }}" color="stone">{{ __('Terug') }}</x-anchor>
             <x-button class="ml-3">{{ $title }}</x-button>
         </div>
     </form>
