@@ -17,4 +17,7 @@ require __DIR__.'/../vendor/autoload.php';
 /** @var Application $app */
 $app = require_once __DIR__.'/../bootstrap/app.php';
 
+// Required on shared host for Laravel with Vite.
+//$app->usePublicPath(__DIR__);
+
 $app->handleRequest(Request::capture());

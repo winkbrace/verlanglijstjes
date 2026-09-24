@@ -40,7 +40,7 @@ Guest users can login using their Google account. To configure this, visit [the 
 # Deploying to shared host
 
 - Build `vendor/` for production with `composer install --no-dev --optimize-autoloader` and upload it completely. Run `composer install` afterwards to get the dev dependencies back locally.
-- Build the front-end locally and upload `public/build/` completely. It is not in git. It needs Node `>=22.12`:
+- Build the front-end locally and upload `public/build/` completely to `build/` in the subdomain root, next to `index.php` (not into the app directory). It is not in git. It needs Node `>=22.12`:
   ```shell
   # nvm install 26
   nvm use 26
@@ -48,7 +48,7 @@ Guest users can login using their Google account. To configure this, visit [the 
   npm ci
   npm run build
   ```
-  Every build gets new hashed filenames, so replace `public/build/` on the server as a whole instead of adding to it. 
+  Every build gets new hashed filenames, so replace `build/` on the server as a whole instead of adding to it. 
   Stop `npm run dev` first and make sure no `public/hot` file ends up on the server: while it exists, Laravel loads the 
   assets from the Vite dev server instead of `public/build/`.
 - Uploading doesn't delete files that were removed from the repository. Delete them on the server too, or replace `app/`, `bootstrap/`, `config/`, `lang/`, `resources/` and `routes/` as a whole. A leftover `resources/lang` directory makes Laravel ignore `lang/`, including the Dutch translations.
@@ -58,33 +58,6 @@ Guest users can login using their Google account. To configure this, visit [the 
 - If you rotate `APP_KEY` after deploying, old sessions become undecryptable — clear `storage/framework/sessions/*` afterwards.
 - After changing `.env`, delete `bootstrap/cache/config.php` if it exists (equivalent to `artisan config:clear`, which you may not be able to run on shared hosting).
 - If you get CSRF/419 errors on every form submission, check `SESSION_DOMAIN` in `.env`. If it doesn't exactly match the domain in the browser's address bar, the browser silently rejects the session cookie (visible as an "Invalid Domain attribute" warning next to the `Set-Cookie` header in DevTools), so no session/CSRF token ever persists between requests. Leave it empty/unset unless you need a specific value.
-
-## One-time: upgrading production from Laravel 10 to 13
-
-1. Check that the host runs PHP 8.4 or newer.
-2. `public/index.php` is completely different in Laravel 13. Upload the new one and re-apply the include-path edits for the host to its two `require` lines:
-   ```php
-   require __DIR__.'/../vendor/autoload.php';
-   $app = require_once __DIR__.'/../bootstrap/app.php';
-   ```
-   (and the `maintenance.php` path above them).
-3. Delete these removed files and directories on the server:
-   - `app/Console/Kernel.php`, `app/Http/Kernel.php`, `app/Exceptions/Handler.php`
-   - `app/Providers/AuthServiceProvider.php`, `BroadcastServiceProvider.php`, `EventServiceProvider.php`, `RouteServiceProvider.php`
-   - everything in `app/Http/Middleware/` except `RedirectIfGuest.php`
-   - `app/Http/Controllers/Auth/RegisteredUserController.php`, `resources/views/auth/register.blade.php`
-   - `routes/channels.php`
-   - `resources/lang/`, `lang/en/`, `lang/en.json`, `lang/nl/pagination.php`, `lang/nl/validation-inline.php`
-4. Upload a fresh `vendor/`, then clear `bootstrap/cache/*.php`.
-5. There are no new migrations. Sessions, cookies and `APP_KEY` are unchanged, so logged-in users should stay logged in.
-6. Smoke test: home, a wish list, login, Google login, claiming and unclaiming a wish, and `/refresh-link-previews`.
-
-## One-time: switching production from Laravel Mix to Vite
-
-1. Run `npm ci && npm run build` locally and upload `public/build/`.
-2. Upload the changed `resources/views/`, `app/View/Components/WishButton.php` and `public/js/family-tree.js`.
-3. Delete the old Mix output on the server: `public/css/`, `public/js/app.js`, `public/js/treant.js` and `public/mix-manifest.json`. Keep `public/js/family-tree.js`.
-4. Smoke test: the family tree on the home page, the navigation dropdown, claiming a wish, and the error toast when deleting fails.
 
 # TODO
 
