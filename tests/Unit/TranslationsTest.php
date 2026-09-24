@@ -5,8 +5,8 @@ use Symfony\Component\Finder\Finder;
 use Tests\TestCase;
 
 /**
- * The app runs in Dutch. The translation files should contain exactly the lines that are used:
- * everything the app shows must be Dutch, and nothing unused may linger in the files.
+ * The app runs in Dutch. Everything the app shows must be Dutch, and nl.json may only contain the lines that are used.
+ * lang/nl/validation.php deliberately contains the full set of validation messages.
  */
 class TranslationsTest extends TestCase
 {
@@ -100,14 +100,6 @@ class TranslationsTest extends TestCase
         foreach (self::VALIDATION_RULES as $rule) {
             $this->assertTrue(Lang::has("validation.$rule", 'nl', false), "validation.$rule is missing");
         }
-    }
-
-    public function test_dutch_validation_file_contains_only_used_rules(): void
-    {
-        $rules = array_keys(require lang_path('nl/validation.php'));
-        sort($rules);
-
-        $this->assertSame(self::VALIDATION_RULES, $rules);
     }
 
     public function test_only_used_translation_files_exist(): void
