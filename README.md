@@ -10,7 +10,8 @@ sail up
 
 Then view on http://localhost (also reachable from Docker Desktop)
 
-Front-end assets are built with Vite (Node `^20.19` or `>=22.12`). Run `npm run dev` while developing, or `npm run build` once. Without either, pages fail with a missing Vite manifest error.
+Front-end assets are built with Vite (Node `>=22.12`). Run `npm run dev` while developing, or `npm run build` once. 
+Without either, pages fail with a missing Vite manifest error.
 
 # Populating new data
 
@@ -39,8 +40,10 @@ Guest users can login using their Google account. To configure this, visit [the 
 # Deploying to shared host
 
 - Build `vendor/` for production with `composer install --no-dev --optimize-autoloader` and upload it completely. Run `composer install` afterwards to get the dev dependencies back locally.
-- Build the front-end locally and upload `public/build/` completely. It is not in git. It needs Node `^20.19` or `>=22.12`:
+- Build the front-end locally and upload `public/build/` completely. It is not in git. It needs Node `>=22.12`:
   ```shell
+  # nvm install 26
+  nvm use 26
   node -v
   npm ci
   npm run build
