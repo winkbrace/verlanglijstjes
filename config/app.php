@@ -138,9 +138,6 @@ return [
     */
 
     'providers' => ServiceProvider::defaultProviders()->merge([
-        /*
-         * Package Service Providers...
-         */
         Laravel\Socialite\SocialiteServiceProvider::class,
     ])->toArray(),
 

@@ -1,5 +1,7 @@
 <?php declare(strict_types=1);
 
+namespace Tests\Unit;
+
 use Illuminate\Contracts\Http\Kernel;
 use Tests\TestCase;
 
@@ -11,9 +13,10 @@ class MiddlewareStackTest extends TestCase
 {
     public function test_app_uses_the_slim_skeleton(): void
     {
-        $this->assertFalse(class_exists(\App\Http\Kernel::class));
-        $this->assertFalse(class_exists(\App\Console\Kernel::class));
-        $this->assertFalse(class_exists(\App\Exceptions\Handler::class));
+        $this->assertFalse(class_exists('\App\Http\Kernel'));
+        $this->assertFalse(class_exists('\App\Console\Kernel'));
+        $this->assertFalse(class_exists('\App\Exceptions\Handler'));
+        $this->assertFalse(class_exists('\App\Providers\RouteServiceProvider'));
     }
 
     public function test_global_middleware(): void
@@ -59,13 +62,13 @@ class MiddlewareStackTest extends TestCase
         $this->assertSame([
             'auth' => \App\Http\Middleware\Authenticate::class,
             'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
-            'auth.session' => \Illuminate\Session\Middleware\AuthenticateSession::class, // Laravel 11+ default
+            'auth.session' => \Illuminate\Session\Middleware\AuthenticateSession::class,
             'cache.headers' => \Illuminate\Http\Middleware\SetCacheHeaders::class,
             'can' => \Illuminate\Auth\Middleware\Authorize::class,
             'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
             'not-guest' => \App\Http\Middleware\RedirectIfGuest::class,
             'password.confirm' => \Illuminate\Auth\Middleware\RequirePassword::class,
-            'precognitive' => \Illuminate\Foundation\Http\Middleware\HandlePrecognitiveRequests::class, // Laravel 11+ default
+            'precognitive' => \Illuminate\Foundation\Http\Middleware\HandlePrecognitiveRequests::class,
             'signed' => \Illuminate\Routing\Middleware\ValidateSignature::class,
             'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
             'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
