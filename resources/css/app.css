@@ -52,7 +52,7 @@ input.claim-wish:checked + div svg {
   @apply block;
 }
 
-/* tailwind-toast: we don't load its Font Awesome icons, so drop the empty icon and its spacing */
+/* tailwind-toast always renders an icon element, even without an icon, so drop it and its spacing */
 .twthis > span:first-child {
     display: none;
 }

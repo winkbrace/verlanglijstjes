@@ -33,6 +33,7 @@ window.clickWishButton = function (type, wishId) {
                     .danger('Oeps!', 'Deleten is niet gelukt.')
                     .with({
                         color: 'bg-red-400',
+                        icon: '',
                         positionY: 'top',
                         positionX: 'end',
                         shape: 'pill',
